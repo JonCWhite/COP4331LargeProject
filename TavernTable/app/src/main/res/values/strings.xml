@@ -5,4 +5,6 @@
     <string name="passwordStr">Password</string>
     <string name="buttonText">Submit</string>
     <string name="returningUserText">Returning User</string>
+    <string name="confirmPasswordStr">Confirm Password</string>
+    <string name="EmailStr">Email</string>
 </resources>
