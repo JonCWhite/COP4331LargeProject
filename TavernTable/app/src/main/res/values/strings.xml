@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TavernTable</string>
     <string name="tavern_table_text">Tavern Table</string>
+    <string name="usernameStr">Username</string>
 </resources>
