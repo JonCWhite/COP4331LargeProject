@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.android.volley.RequestQueue;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,8 +18,11 @@ public class MainActivity extends AppCompatActivity {
         configureNewUserButton();
     }
 
+    // Button functionality for the returning user button. Allows users to sign in.
     private void configureReturnUserButton() {
         Button returnUserButton = (Button) findViewById(R.id.returnUserButton);
+        // Add an onClickListener to the button and configure it to start the sign in activity when
+        // pressed.
         returnUserButton.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
         }));
     }
 
+    // Button functionality for new users button. Allows users to sign up.
     private void configureNewUserButton() {
         Button newUserButton = (Button) findViewById(R.id.newUserButton);
+        // Add an onClickListener to the button and configure it to start the sign up activity when
+        // pressed.
         newUserButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

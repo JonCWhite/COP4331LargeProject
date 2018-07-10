@@ -23,15 +23,20 @@ $connection = new mysqli($hostname, $username, $password, $databaseName);
 if($connection->connect_error) {
   returnWithError($connection->connect_error);
 } else {
+  // NOTE (Jon W): All of the tutorials I found used the POST method rather than
+  // a JSON to parse in order to get data from the front end, so I changed that here.
 
   // We take the username from the passed in JSON.
-  $username = $inData['username'];
+  // $username = $inData['username'];
+  $username = $_POST['username'];
 
   // We take in the password from the passed in JSON.
-  $password = $inData['password'];
+  // $password = $inData['password'];
+  $password = $_POST['password']
 
   // We take in the email from the passed in JSON.
-  $email = $inData['email'];
+  // $email = $inData['email'];
+  $email = $_POST['email'];
 
   // We return everything from our database that has the same passed in username, password, and email.
   $query = "SELECT * FROM Users WHERE username = '$username' AND password = '$password' AND email = '$email'";
