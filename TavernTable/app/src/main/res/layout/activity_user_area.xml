@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".UserAreaActivity">
 
+    <TextView
+        android:id="@+id/tvWelcomeMsg"
+        android:layout_width="212dp"
+        android:layout_height="104dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="131dp" />
 </android.support.constraint.ConstraintLayout>

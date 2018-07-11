@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">TavernTable</string>
     <string name="tavern_table_text">Tavern Table</string>
+    <string name="usernameStr">Username</string>
+    <string name="passwordStr">Password</string>
+    <string name="buttonText">Submit</string>
+    <string name="returningUserText">Returning User</string>
+    <string name="confirmPasswordStr">Confirm Password</string>
+    <string name="EmailStr">Email</string>
 </resources>

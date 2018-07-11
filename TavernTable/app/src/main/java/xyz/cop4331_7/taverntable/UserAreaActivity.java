@@ -1,15 +1,13 @@
 package xyz.cop4331_7.taverntable;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class SplashActivity extends AppCompatActivity {
+public class UserAreaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        setContentView(R.layout.activity_user_area);
     }
 }
