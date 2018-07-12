@@ -5,12 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< HEAD
-import android.widget.EditText; 
-=======
 import android.widget.EditText;
 
->>>>>>> 1ab61c6... Fixed bracket, import, and formatting errors
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -93,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Volley.newRequestQueue(getApplicationContext()).add(postRequest);
             }
         });
@@ -100,6 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
 =======
 
 >>>>>>> 1ab61c6... Fixed bracket, import, and formatting errors
+=======
+                Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+>>>>>>> 5606f23... Added code to create request queue and add the postRequest
             }
         });
     }
