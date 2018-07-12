@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                         return params;
                     }
                 };
-
+                Volley.newRequestQueue(getApplicationContext()).add(postRequest);
             }
         });
     }
