@@ -25,13 +25,13 @@ if ($connection->connect_error) {
 } else {
 
   // We take the username from the passed in JSON.
-  $username = $inData['username'];
+  $username = $_POST['username'];
 
   // We take the password from the passed in JSON.
-  $password = $inData['password'];
+  $password = $_POST['password'];
 
   // We take the email from the passed in JSON.
-  $email = $inData['email'];
+  $email = $_POST['email'];
 
   // We return the userID that has the same username, password, and email associated with it.
   $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$password' AND email = '$email'";
