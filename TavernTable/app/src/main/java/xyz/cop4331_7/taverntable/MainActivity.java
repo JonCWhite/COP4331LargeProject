@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         // Configure buttons to be pressed
         configureReturnUserButton();
         configureNewUserButton();
+        configurePlayerSessionButton();
     }
 
     // Button functionality for the returning user button. Allows users to sign in.
@@ -43,5 +44,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
+    }
+
+    // Button functionality for new users button. Allows users to sign up.
+    private void configurePlayerSessionButton() {
+        Button newUserButton = (Button) findViewById(R.id.playerSessionButton);
+        // Add an onClickListener to the button and configure it to start the sign up activity when
+        // pressed.
+        newUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PlayerSessionActivity.class);
+                intent.putExtra("campaign_name", "test_campaign");
+                intent.putExtra("user_name", "test_user");
+                startActivity(intent);
+                }
+        });
     }
 }

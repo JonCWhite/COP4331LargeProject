@@ -44,8 +44,21 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="48dp"
         android:layout_marginLeft="48dp"
-        android:text="New User"
+        android:text="@string/new_user"
         app:layout_constraintTop_toBottomOf="@+id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!-- Button for new users. Leads to sign up prompt. -->
+    <Button
+        android:id="@+id/playerSessionButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginLeft="48dp"
+        android:text="@string/test_user_session"
+        app:layout_constraintTop_toBottomOf="@+id/newUserButton"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
