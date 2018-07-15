@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class PlayerSessionActivity extends AppCompatActivity {
+public class DMSessionActivity extends AppCompatActivity {
     private String user_name, campaign_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_session);
+        setContentView(R.layout.activity_dmsession);
 
         // Initialize user and campaign names.
         user_name = getIntent().getExtras().get("user_name").toString();
@@ -37,6 +37,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
         configureBattleButton();
         configureSheetsButton();
         configureNotesButton();
+        configureRollButton();
     }
 
     private void configureBattleButton() {
@@ -70,6 +71,19 @@ public class PlayerSessionActivity extends AppCompatActivity {
         // Add an onClickListener to the button and configure it to start the sign in activity when
         // pressed.
         bNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start next activity (currently a placeholder, will have to make this a popup)
+                // startActivity(new Intent(PlayerSessionActivity.this, null));
+            }
+        });
+    }
+
+    private void configureRollButton() {
+        ImageButton bRoll = (ImageButton) findViewById(R.id.bRoll);
+        // Add an onClickListener to the button and configure it to start the sign in activity when
+        // pressed.
+        bRoll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)

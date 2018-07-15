@@ -31,7 +31,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".PlayerSessionActivity"></activity>
+        <activity android:name=".PlayerSessionActivity" />
+        <activity android:name=".DMSessionActivity"></activity>
     </application>
 
 </manifest>
