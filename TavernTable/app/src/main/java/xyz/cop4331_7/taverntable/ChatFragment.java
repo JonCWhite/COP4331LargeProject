@@ -1,5 +1,6 @@
 package xyz.cop4331_7.taverntable;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -26,6 +27,9 @@ public class ChatFragment extends Fragment {
     private Button bSend;
     private DatabaseReference roomRoot;
     private EditText etEntry;
+    // Best practices for android say padding should be done in multiples of 8. I declared this
+    // as a constant to avoid magic numbers.
+    private static final int paddingBase = 8;
     private LinearLayout llMessages;
     private String tempKey, user_name, campaign_name;
 
@@ -101,8 +105,9 @@ public class ChatFragment extends Fragment {
     }
 
     private void appendChat(DataSnapshot dataSnapshot) {
-        String message, username;
+        int padding;
         Iterator i = dataSnapshot.getChildren().iterator();
+        String message, username;
 
         while (i.hasNext()) {
             message = (String) ((DataSnapshot)i.next()).getValue();
@@ -111,9 +116,54 @@ public class ChatFragment extends Fragment {
             // StackOverflow said it would be better to use activity context, but monitor
             // application performance in case this causes a memory leak.
             // Can be changed to getActivity().getApplicationContext() if need be.
-            TextView textView = new TextView(getActivity());
-            textView.setText(username + " : " + message + "\n");
-            llMessages.addView(textView);
+            TextView usernameView = new TextView(getActivity());
+            TextView messageView = new TextView(getActivity());
+            if (username.equals(user_name)) {
+                // format username
+                usernameView.setText(username);
+                usernameView.setGravity(android.view.Gravity.RIGHT);
+
+                // format message
+                messageView.setText(message);
+                LinearLayout.LayoutParams textParam =
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                textParam.gravity = android.view.Gravity.RIGHT;
+                messageView.setLayoutParams(textParam);
+                messageView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                messageView.setTextColor(getResources().getColor(R.color.white));
+                padding = getDPPaddingInPixels(paddingBase);
+                messageView.setPadding(padding, padding, padding, padding);
+
+                // Add user name and message to UI
+                llMessages.addView(usernameView);
+                llMessages.addView(messageView);
+            }
+            else {
+                // format username
+                usernameView.setText(username);
+                usernameView.setGravity(android.view.Gravity.LEFT);
+
+                // format message
+                messageView.setText(message);
+                messageView.setGravity(android.view.Gravity.LEFT);
+                LinearLayout.LayoutParams textParam =
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                textParam.gravity = android.view.Gravity.LEFT;
+                messageView.setLayoutParams(textParam);
+                messageView.setBackgroundColor(getResources().getColor(R.color.lightGray));
+
+                // add user name and message to UI
+                llMessages.addView(usernameView);
+                llMessages.addView(messageView);
+            }
         }
+    }
+
+    private int getDPPaddingInPixels(int paddingDp) {
+        float density = getActivity().getApplicationContext().getResources().getDisplayMetrics().density;
+        int paddingPixel = (int)(paddingDp * density);
+        return paddingPixel;
     }
 }
