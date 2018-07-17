@@ -1,21 +1,19 @@
 <?php
     // Initilize Character
-
     // Get file contents
-    $inData = json_decode(file_get_contents('php://input'), true);
     
 
     // Take data from front-end
-    $race = $inData["raceID"];
-    $class = $inData["classID"];
-    $rollDex = $inData["rollDex"];
-    $rollCha = $inData["rollCha"];
-    $rollStr = $inData["rollStr"];
-    $rollCon = $inData["rollCon"];
-    $rollInt = $inData["rollInt"];
-    $rollWis = $inData["rollWis"];
+    $race = $_POST["raceID"];
+    $class = $_POST["classID"];
+    $rollDex = $_POST["rollDex"];
+    $rollCha = $_POST["rollCha"];
+    $rollStr = $_POST["rollStr"];
+    $rollCon = $_POST["rollCon"];
+    $rollInt = $_POST["rollInt"];
+    $rollWis = $_POST["rollWis"];
 
-    $user = $inData["userID"];
+    $user = $_POST["userID"];
 
     $strength = $rollStr;
     $charisma = $rollCha;
@@ -51,8 +49,6 @@
     // Interact with database
     else
     {
-
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////// Races ////////////////////////////////////
@@ -233,7 +229,7 @@
                 // Constitution: +1
                 $constitution += 1;
                 // Proficiency: Artificer's tools
-                $itemProf[] = ["Artificer's tools"]
+                $itemProf[] = ["Artificer's tools"];
                 // $additionalProf += " You have proficiency with Artificer tools. Artificer Lore: whenever you make a intelligence check related ti magical, alchemical, or technological items, you can add twice your proficiency bonus. Ability: Tinker.";
                 $abilities[] = ["Artificer's Lore", "Tinker"];
                 // Artificer's Lore -- Ability
@@ -248,7 +244,7 @@
             if($race == "DeepGnome")
             {
                 // Intelligence: +2
-                $dexterity += 2
+                $intelligence += 2;
                 // Languages: speak, read, write undercommon.
                 $languages .= "Undercommon";
                 // Superior Darkvision -- Ability
@@ -256,7 +252,7 @@
                 // Stone Camouflage -- Ability
                     // Advantage on Dexterity (Stealth) Checks to hide in rocky terrain.
                 unset($abilities[array_search('Darkvision', $abilities)]);
-                $abilities[] = ["Superior Darkvision", "Stone Camouflage"]
+                $abilities[] = ["Superior Darkvision", "Stone Camouflage"];
                 // $additionalProf = "Superior Dark Vision: you can see in dim light 120 feet ahead of you as if it were bright, and darkness as if it were dim. Gnome Cunning: You have advantage on all intelligence, wisdom, and charisma saving throws against magic. Stone Camouflage: you have advantage on dexterity checks to hide in rocky terrain."
             }
         }
@@ -716,7 +712,7 @@
                 // Tools: None
                 // Saving Throws: Wisdom, Charisma
                 // Skills: Choose two: Athletics, Insight, Intimidation, Medicine, Persuasion, Religion
-            $itemProf[] = ["Armor", "Shield", "Simple Weapon", "Martial Weapon"]
+            $itemProf[] = ["Armor", "Shield", "Simple Weapon", "Martial Weapon"];
             $savingThrows[] = ["Wisdom", "Charisma"];
             $skillProf[] = ["Religion", "Athletics"];
             // Equiptment
@@ -905,7 +901,7 @@
                 // Armor: None
                 // Weapons: Daggers, darts, slings, quarterstaffs, light crossbows
                 // Tools: None
-            $itemProf[] = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
+            $itemProf[] = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"];
                 // Saving Throws: Intelligence, Wisdom
             $savingThrows[] = ["Intelligence", "Wisdom"];
                 // Skills: Choose two: Arcana, History, Insight, Investigation, Medicine, and Religion
@@ -925,7 +921,7 @@
         }
     }
 
-    $armorClass = 10 + $dexterity
+    $armorClass = 10 + $dexterity;
     $inventorySize = count($inventory);
     $itemProfSize = count($itemProf);
     $abilitiesSize = count($abilities);
@@ -935,7 +931,7 @@
     //////////// Characters Table //////////
     ////////////////////////////////////////
 
-    $sql = "INSERT INTO Characters (raceID, classID, userID, languages, passivePerception, proficiencyBonus, speed, spellCastingAbility, level, expPoints, armorClass, maxHP, hitDie, inspiration, strength, dexterity, intelligence, wisdom, constitution, charisma, inventorySize) VALUES ($race, $class, $user, $languages, $passivePerception, 2, $speed, $spellCastingAbility, 1, 0, $armorClass, HPAddition, $hitDie, 0, $strength, $dexterity, $intelligence, $wisdom, $constitution, $charisma, $inventorySize)"
+    $sql = "INSERT INTO Characters (raceID, classID, userID, languages, passivePerception, proficiencyBonus, speed, spellCastingAbility, level, expPoints, armorClass, maxHP, hitDie, inspiration, strength, dexterity, intelligence, wisdom, constitution, charisma, inventorySize) VALUES ($race, $class, $user, $languages, $passivePerception, 2, $speed, $spellCastingAbility, 1, 0, $armorClass, HPAddition, $hitDie, 0, $strength, $dexterity, $intelligence, $wisdom, $constitution, $charisma, $inventorySize)";
 
     $conn->query($sql);
 
@@ -950,7 +946,7 @@
     {
         $itemName = $itemProf[i];
 
-        $sql = "INSERT INTO Proficiencies (characterID, skill) VALUES ($characterID, $itemName)"
+        $sql = "INSERT INTO Proficiencies (characterID, skill) VALUES ($characterID, $itemName)";
 
         $conn->query($sql);
     }
@@ -964,11 +960,11 @@
     {
         $thing = $inventory[i];
 
-        $getID = "SELECT itemID FROM Items WHERE name = $thing"
+        $getID = "SELECT itemID FROM Items WHERE name = $thing";
 
         $ID = $conn->query($getID);
 
-        $getProficiency = "SELECT proficiency FROM Proficiencies WHERE characterID = $characterID AND skill = $thing"
+        $getProficiency = "SELECT proficiency FROM Proficiencies WHERE characterID = $characterID AND skill = $thing";
 
         $Proficiency = $conn->query($getProficiency);
 
@@ -996,23 +992,4 @@
 
         $conn->query($sql);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
