@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">TavernTable</string>
     <string name="tavern_table_text">Tavern Table</string>
+    <string name="usernameStr">Username</string>
+    <string name="passwordStr">Password</string>
+    <string name="buttonText">Submit</string>
+    <string name="signUpText">Sign Up</string>
+    <string name="returningUserText">Returning User</string>
+    <string name="confirmPasswordStr">Confirm Password</string>
+    <string name="EmailStr">Email</string>
+    <string name="test_user_session">Test User Session</string>
+    <string name="new_user">New User</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="send">Send</string>
+    <string name="battle_button_desc">Battle Button</string>
+    <string name="character_sheet_button_desc">Character sheet button</string>
+    <string name="notes_button_desc">Notes button</string>
+    <string name="test_dm_session_string">test dm session</string>
 </resources>
