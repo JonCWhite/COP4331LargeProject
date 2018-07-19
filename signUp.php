@@ -7,9 +7,6 @@ COP 4331C, Summer 2018
 Professor Richard Leinecker
 */
 
-// We get the passed in JSON string.
-$inData = getRequestInfo();
-
 // We set these variables to the correct information in order to access the database.
 $hostname = 'localhost';
 $username = 'root';
@@ -24,17 +21,20 @@ if($connection->connect_error) {
   returnWithError($connection->connect_error);
 } else {
 
-  // We take the username from the passed in JSON.
-  $username = $inData['username'];
+  // We take the passed in username.
+  $username = $_POST['username'];
 
-  // We take in the password from the passed in JSON.
-  $password = $inData['password'];
+  // We take passed in password.
+  $password = $_POST['password'];
 
-  // We take in the email from the passed in JSON.
-  $email = $inData['email'];
+  // We take passed in email.
+  $email = $_POST['email'];
 
-  // We return everything from our database that has the same passed in username, password, and email.
-  $query = "SELECT * FROM Users WHERE username = '$username' AND password = '$password' AND email = '$email'";
+  // Create a hash value with our passed in password.
+  $hash = hash('sha256', $password);
+
+  // We return everything from our database that has the same passed in username, hashed password, and email.
+  $query = "SELECT * FROM Users WHERE username = '$username' AND password = '$hash' AND email = '$email'";
 
   // We perform our query.
   $result = $connection->query($query);
@@ -46,9 +46,8 @@ if($connection->connect_error) {
     returnWithError("This user already exists");
   } else {
 
-
-    // Since we have verified that a user with the same passed in information doesn't exist, we insert this new user into our Users table with the passed in username, password, and email.
-    $query = "INSERT INTO Users (username, password, email) VALUES ('$username', '$password', '$email')";
+    // Since we have verified that a user with the same passed in information doesn't exist, we insert this new user into our Users table with the passed in username, created hash password, and passed in email.
+    $query = "INSERT INTO Users (username, password, email) VALUES ('$username', '$hash', '$email')";
 
     // We perform our query.
     $result = $connection->query($query);
@@ -59,7 +58,7 @@ if($connection->connect_error) {
     } else {
 
         // Since we have successfully inserted our new user into our table, we want to also retrieve the userID associated with it.
-        $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$password' AND email = '$email'";
+        $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$hash' AND email = '$email'";
 
         // We perform the query.
         $result = $connection->query($query);
@@ -86,11 +85,6 @@ if($connection->connect_error) {
 
   }
 
-}
-
-// We retrieve the passed in JSON, decode it, and return it afterwards.
-function getRequestInfo() {
-  return json_decode(file_get_contents('php://input'), true);
 }
 
 // We set the correct header to accomodate our JSON and echo the passed in obj variable.

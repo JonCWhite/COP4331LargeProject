@@ -7,9 +7,6 @@ COP 4331C, Summer 2018
 Professor Richard Leinecker
 */
 
-// We retrieve the passed in JSON string.
-$inData = getRequestInfo();
-
 // We set these variables to the correct information in order to access the database.
 $hostname = 'localhost';
 $username = 'root';
@@ -24,17 +21,20 @@ if ($connection->connect_error) {
   returnWithError($connection->connect_error);
 } else {
 
-  // We take the username from the passed in JSON.
-  $username = $inData['username'];
+  // We take the possed in username.
+  $username = $_POST['username'];
 
-  // We take the password from the passed in JSON.
-  $password = $inData['password'];
+  // We take the passed in password.
+  $password = $_POST['password'];
 
-  // We take the email from the passed in JSON.
-  $email = $inData['email'];
+  // We take the passed in email.
+  $email = $_POST['email'];
 
-  // We return the userID that has the same username, password, and email associated with it.
-  $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$password' AND email = '$email'";
+  // We produce a hash value with our passed in password.
+  $hash = hash('sha256', $password);
+
+  // We return the userID that has the same username, password hash value, and email associated with it.
+  $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$hash' AND email = '$email'";
 
   // We perform our query.
   $result = $connection->query($query);
@@ -44,10 +44,10 @@ if ($connection->connect_error) {
     returnWithError($connection->connect_error);
   } else {
 
-    // We check whether there are any rows that have the same passed in username, password, and email.
+    // We check whether there are any rows that have the same passed in username, password hash value, and email.
     if ($result->num_rows > 0) {
 
-      // We get the specfic row we are looking for from our Users table that matches the passed in username, password, and email.
+      // We get the specfic row we are looking for from our Users table that matches the passed in username, password hash value, and email.
       $row = $result->fetch_assoc();
 
       // We assign the userID which we recieved from the Users table and assign it to the variable userID.
@@ -57,19 +57,14 @@ if ($connection->connect_error) {
       sendResultInfo($userID);
     } else {
 
-      // If there are no rows that have the same passed in username, password, and email, we send an error to the returnWithError method indicating that this user does not exist in our Users table.
+      // If there are no rows that have the same passed in username, password hash value, and email, we send an error to the returnWithError method indicating that this user does not exist in our Users table.
       returnWithError("This user does not exist");
     }
   }
 
-  // Now that we have used our databse we can safely close it.
+  // Now that we have used our database we can safely close it.
   $connection->close();
 
-}
-
-// We retrieve the passed in JSON, decode it, and return it afterwards.
-function getRequestInfo() {
-  return json_decode(file_get_contents('php://input'), true);
 }
 
 // We set the correct header to accomodate our JSON and echo the passed in obj variable.
