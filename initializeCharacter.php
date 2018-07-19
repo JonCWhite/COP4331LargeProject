@@ -4,15 +4,14 @@
     
 
     // Take data from front-end
-    $race = $_POST["raceID"];
-    $class = $_POST["classID"];
+    $race = $_POST["raceName"];
+    $class = $_POST["className"];
     $rollDex = $_POST["rollDex"];
     $rollCha = $_POST["rollCha"];
     $rollStr = $_POST["rollStr"];
     $rollCon = $_POST["rollCon"];
     $rollInt = $_POST["rollInt"];
     $rollWis = $_POST["rollWis"];
-
     $user = $_POST["userID"];
 
     $strength = $rollStr;
@@ -35,9 +34,9 @@
 
     // Set up connection
     $hostname = 'localhost';
-    $databaseName = 'tavernTable';
+    $databaseName = 'dndApp';
     $username = 'root';
-    $password = 'tavernTable7';
+    $password = 'contactmanager7';
 
     $conn = new mysqli($hostname, $username, $password, $databaseName);
 
@@ -55,7 +54,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-        if($race == "DragonBorn")
+        if($race == "Dragonborn")
         {
             // Stength +2
             $strength += 2; 
@@ -84,7 +83,7 @@
             // Must complete a short or long rest before next use.
             $abilities[] = ["Draconic Ancestry"];
 
-            // $additionalProf = "Draconic Ancestry: Breath Weapon: DC = 8 + Con Mod + Proficiency Bonus, Damage: 2d6 on a failed save, half as much on a successful one. At level 6: 3d6, at level 11: 4d6, at level 16: 5d6. Usable once each rest."; 
+            $additionalProf = "Draconic Ancestry: Breath Weapon: DC = 8 + Con Mod + Proficiency Bonus, Damage: 2d6 on a failed save, half as much on a successful one. At level 6: 3d6, at level 11: 4d6, at level 16: 5d6. Usable once each rest."; 
         }
 
 
@@ -95,7 +94,7 @@
 
 
 
-        else if($race == "Dwarf" || $race == "HillDwarf" || $race == "MountainDwarf")
+        else if($race == "Hill Dwarf" || $race == "Mountain Dwarf")
         {
             // Constitution: +2
             $constitution += 2;
@@ -117,7 +116,7 @@
             // $additionalProf = "Dark Vision: you can see in dim light 60 feet ahead of you as if it were bright, and darkness as if it were dim. Dwarven Resilience: advantage on saving throws against poison, and resistance to poison damage. Stonecunning: double proficiency bonus added to history checks related to the origin of stonework.";
 
 
-            if($race == "HillDwarf")
+            if($race == "Hill Dwarf")
             {
                 // Wisdom: +1
                 $wisdom += 1;
@@ -125,7 +124,7 @@
                 $HPAddition += 1;
                 $abilities[] = ["Dwarven Toughness"];
             }
-            if($race == "MountainDwarf")
+            if($race == "Mountain Dwarf")
             {
                 // Strength: +2
                 $strength += 2;
@@ -142,7 +141,7 @@
 
 
 
-        else if($race == "Elf" || $race == "HighElf" || $race == "WoodElf")
+        else if($race == "High Elf" || $race == "Wood Elf")
         {
             // Dexterity: +2
             $dexterity += 2;
@@ -163,7 +162,7 @@
                 // See in darkness within 60 feet of you as if dim
             $abilities[] = ["Darkvision", "Fey Ancestry", "Trance", "Keen Senses"];
             // $additionalProf = "Dark Vision: you can see in dim light 60 feet ahead of you as if it were bright, and darkness as if it were dim. Fey Ancestry: magic cannot put you to sleep, and you have advantage on saving throws against being charmed. Trance: you can be semi-conscious for 4 hours a day and receive the same benefit as 8 hours of sleep."
-            if($race == "HighElf")
+            if($race == "High Elf")
             {
                 // Intelligence: +1
                 $intelligence += 1;
@@ -174,7 +173,7 @@
                 // $additionalProf += " Cantrip: you can choose one cantrip from the wizard list, intelligence is the spell casting ability modifier."
                 // Read, speak, write one additional language of choice.
             }
-            if($race == "WoodElf")
+            if($race == "Wood Elf")
             {
                 // Wisdom: +1
                 $wisdom += 1;
@@ -197,7 +196,7 @@
 
 
 
-        else if($race == "Gnome" || $race == "ForestGnome" || $race == "RockGnome" || $race == "DeepGnome")
+        else if($race == "Forest Gnome" || $race == "Rock Gnome")
         {
             // Intelligence: +2
             $intelligence += 2;
@@ -213,7 +212,7 @@
             $abilities[] = ["Darkvision", "Gnome Cunning"];
             // $additionalProf = "Dark Vision: you can see in dim light 60 feet ahead of you as if it were bright, and darkness as if it were dim. Gnome Cunning: You have advantage on all intelligence, wisdom, and charisma saving throws against magic."
 
-            if($race == "ForestGnome")
+            if($race == "Forest Gnome")
             {
                 // Dexterity: +1
                 $dexterity += 1;
@@ -224,7 +223,7 @@
                 $abilities[] = ["Natural Illusionist", "Speak with Small Beasts"];
                 // $additionalProf += " Natural Illusionist: You know the Minor Illusion cantrip-- intelligence is your spellcasting ability. Speak with Small Beasts: Through sound and gestures, you may communicate simple ideas with small or smaller beasts."
             }
-            if($race == "RockGnome")
+            if($race == "Rock Gnome")
             {
                 // Constitution: +1
                 $constitution += 1;
@@ -240,20 +239,6 @@
                         // Fire Starter: The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action.
                         // Music Box: When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed.
                         // At your DM's discretion, you may make other objects with effects similar in power to these. The prestidigitation cantrip is a good baseline for such effects.
-            }
-            if($race == "DeepGnome")
-            {
-                // Intelligence: +2
-                $intelligence += 2;
-                // Languages: speak, read, write undercommon.
-                $languages .= "Undercommon";
-                // Superior Darkvision -- Ability
-                    // Darkvision radius of 120 feet
-                // Stone Camouflage -- Ability
-                    // Advantage on Dexterity (Stealth) Checks to hide in rocky terrain.
-                unset($abilities[array_search('Darkvision', $abilities)]);
-                $abilities[] = ["Superior Darkvision", "Stone Camouflage"];
-                // $additionalProf = "Superior Dark Vision: you can see in dim light 120 feet ahead of you as if it were bright, and darkness as if it were dim. Gnome Cunning: You have advantage on all intelligence, wisdom, and charisma saving throws against magic. Stone Camouflage: you have advantage on dexterity checks to hide in rocky terrain."
             }
         }
 
@@ -326,7 +311,7 @@
 
 
 
-        else if($race == "Halfling" || $race == "LightfootHalfling" || $race == "StoutHalfling")
+        else if($race == "Lightfoot Halfling" || $race == "Stout Halfling")
         {
             // Dexterity: +2
             $dexterity += 2;
@@ -344,7 +329,7 @@
             $abilities[] = ["Lucky", "Brave", "Halfling Nimbleness"];
             // $additionalProf = "Lucky: when you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die, and you must use the new result. Brave: you have advantage on saving throws against being frightened. Nimble: you can move through the space of any creature that is of a size larger than yours."
 
-            if($race == "LightfootHalfling")
+            if($race == "Lightfoot Halfling")
             {
                 // Charisma: +1
                 $charisma += 1;
@@ -354,7 +339,7 @@
                 // $additionalProf += " Naturally Stealthy: you can attempt to hide even when you are only obstructed by a creature that is at least one size larger than you."
             }
 
-            if($race == "StoutHalfling")
+            if($race == "Stout Halfling")
             {
                 // Constitution: +1
                 $constitution += 1;
@@ -919,77 +904,99 @@
                 // Spell attack modifier = proficiency + Intelligence modifier
             $abilities[] = ["Spellcasting", "Arcane Recovery"];
         }
-    }
-
-    $armorClass = 10 + $dexterity;
-    $inventorySize = count($inventory);
-    $itemProfSize = count($itemProf);
-    $abilitiesSize = count($abilities);
-    $passivePerception = 10 + $wisdomMod;
-
-    ////////////////////////////////////////
-    //////////// Characters Table //////////
-    ////////////////////////////////////////
-
-    $sql = "INSERT INTO Characters (raceID, classID, userID, languages, passivePerception, proficiencyBonus, speed, spellCastingAbility, level, expPoints, armorClass, maxHP, hitDie, inspiration, strength, dexterity, intelligence, wisdom, constitution, charisma, inventorySize) VALUES ($race, $class, $user, $languages, $passivePerception, 2, $speed, $spellCastingAbility, 1, 0, $armorClass, HPAddition, $hitDie, 0, $strength, $dexterity, $intelligence, $wisdom, $constitution, $charisma, $inventorySize)";
-
-    $conn->query($sql);
-
-    // Front End Notes: Modifiers are calculated as such: floor((ability score - 10)/2)
 
 
-    ////////////////////////////////////////
-    ////////// Proficiencies Table/////////
-    ////////////////////////////////////////
-
-    for($i = 0; $i < $itemProfSize; i++)
-    {
-        $itemName = $itemProf[i];
-
-        $sql = "INSERT INTO Proficiencies (characterID, skill) VALUES ($characterID, $itemName)";
-
-        $conn->query($sql);
-    }
 
 
-    ////////////////////////////////////////
-    //////// CharactersItems Table /////////
-    ////////////////////////////////////////
 
-    for($i = 0; $i < $inventorySize; i++)
-    {
-        $thing = $inventory[i];
 
-        $getID = "SELECT itemID FROM Items WHERE name = $thing";
+        $armorClass = 10 + $dexterity;
+        $inventorySize = count($inventory);
+        $itemProfSize = count($itemProf);
+        $abilitiesSize = count($abilities);
+        $passivePerception = 10 + $wisdomMod;
 
-        $ID = $conn->query($getID);
+        ////////////////////////////////////////
+        //////////// Characters Table //////////
+        ////////////////////////////////////////
 
-        $getProficiency = "SELECT proficiency FROM Proficiencies WHERE characterID = $characterID AND skill = $thing";
+        // Get the raceID
+        $sql = $conn->query("SELECT * FROM Races WHERE raceName = '$race'");
+        $fetch = $sql->fetch_assoc();
+        $raceID = $fetch["raceID"];
 
-        $Proficiency = $conn->query($getProficiency);
+        // Get the classID
+        $sql = $conn->query("SELECT * FROM Classes WHERE name = '$class'");
+        $fetch = $sql->fetch_assoc();
+        $classID = $fetch["classID"];
 
-        $uses = ("SELECT usesAvailable FROM Items WHERE itemID = $ID")*$quantity[i];
 
-        $usesLeft = $conn->query($uses);
-
-        $sql = "INSERT INTO CharactersItems (characterID, itemID, proficiency, usesRemaining) VALUES ($characterID, $ID, $Proficiency, $usesLeft)";
+        $charID;
+        // Insert into the Character Table
+        $sql = $conn->query("INSERT INTO Characters (raceID, classID, userID, languages, passivePerception, proficiencyBonus, speed, spellCastingAbility, level, expPoints, armorClass, maxHP, hitDie, inspiration, strength, dexterity, intelligence, wisdom, constitution, charisma, inventorySize) OUTPUT INSERTED.characterID INTO $charID, VALUES ($raceID, $classID, $user, '$languages', $passivePerception, 2, $speed, '$spellCastingAbility', 1, 0, '$armorClass', 'HPAddition', '$hitDie', 0, $strength, $dexterity, $intelligence, $wisdom, $constitution, $charisma, $inventorySize)");
 
         $conn->query($sql);
-    }
 
-    ////////////////////////////////////////
-    /////// CharactersAbilities Table //////
-    ////////////////////////////////////////
+        //Get the characterID
+        $characterID = $conn->insert_id;
 
-    for($i = 0; $i < $abilitiesSize; $i++)
-    {
-        $ability = $abilities[i];
+        // Front End Notes: Modifiers are calculated as such: floor((ability score - 10)/2)
 
-        $getID = "SELECT abilitiesID FROM Abilities WHERE name = $ability";
-        $ID = $conn->query($getID);
 
-        $sql = "INSERT INTO CharactersAbilities (characterID, abilitiesID) VALUES ($characterID, $ID)";
+        //////////////////////////////////////
+        //////// Proficiencies Table/////////
+        //////////////////////////////////////
 
-        $conn->query($sql);
+        foreach($itemProfSize as $i)
+        {
+            $itemName = $itemProf[i];
+
+            $sql = "INSERT INTO Proficiencies (characterID, skill) VALUES ($characterID, $itemName)";
+
+            $conn->query($sql);
+        }
+
+
+        ////////////////////////////////////////
+        //////// CharactersItems Table /////////
+        ////////////////////////////////////////
+
+        foreach($inventorySize as $i)
+        {
+            $thing = $inventory[i];
+
+            $getID = "SELECT itemID FROM Items WHERE name = $thing";
+
+            $ID = $conn->query($getID);
+
+            $getProficiency = "SELECT proficiency FROM Proficiencies WHERE characterID = $characterID AND skill = $thing";
+
+            $Proficiency = $conn->query($getProficiency);
+
+            $uses = ("SELECT usesAvailable FROM Items WHERE itemID = $ID")*$quantity[i];
+
+            $usesLeft = $conn->query($uses);
+
+            $sql = "INSERT INTO CharactersItems (characterID, itemID, proficiency, usesRemaining) VALUES ($characterID, $ID, $Proficiency, $usesLeft)";
+
+            $conn->query($sql);
+        }
+
+        ////////////////////////////////////////
+        /////// CharactersAbilities Table //////
+        ////////////////////////////////////////
+
+        foreach($abilitiesSize as $i)
+        {
+            $ability = $abilities[i];
+
+            $getID = "SELECT abilitiesID FROM Abilities WHERE name = $ability";
+            $ID = $conn->query($getID);
+
+            $sql = "INSERT INTO CharactersAbilities (characterID, abilitiesID) VALUES ($characterID, $ID)";
+
+            $conn->query($sql);
+        }
+        $conn->close();
     }
 ?>
