@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".createCharacter">
+
+    <Spinner
+        android:id="@+id/sClass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="279dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginRight="61dp"
+        android:layout_marginStart="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sRace" />
+
+    <TextView
+        android:id="@+id/etCharName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginTop="47dp"
+        android:hint="Character Name"
+        android:text="Character Name"
+        app:layout_constraintBottom_toTopOf="@+id/sRace"
+        app:layout_constraintEnd_toEndOf="@+id/sRace"
+        app:layout_constraintStart_toStartOf="@+id/sRace"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sRace"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginStart="59dp"
+        app:layout_constraintBottom_toTopOf="@+id/sClass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCharName" />
+
+</android.support.constraint.ConstraintLayout>

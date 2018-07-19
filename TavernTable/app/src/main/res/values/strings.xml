@@ -4,6 +4,7 @@
     <string name="usernameStr">Username</string>
     <string name="passwordStr">Password</string>
     <string name="buttonText">Submit</string>
+    <string name="signUpText">Sign Up</string>
     <string name="returningUserText">Returning User</string>
     <string name="confirmPasswordStr">Confirm Password</string>
     <string name="EmailStr">Email</string>

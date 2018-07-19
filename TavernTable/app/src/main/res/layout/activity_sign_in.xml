@@ -7,40 +7,40 @@
     tools:context=".SignInActivity">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="243dp"
-        android:layout_height="48dp"
-        android:text="Tavern Table"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tavern_table_text"
         android:textColor="@android:color/holo_orange_light"
         android:textSize="36sp"
         android:textStyle="bold"
         app:fontFamily="sans-serif-smallcaps"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/usernameField"
         android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="98dp"
         android:layout_marginTop="168dp"
-        android:hint="Username"
+        android:hint="@string/usernameStr"
         android:inputType="textVisiblePassword"
-        app:layout_constraintBottom_toTopOf="@+id/bSignIn"
+        app:layout_constraintBottom_toTopOf="@+id/signInButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/passwordField"
         android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
-        android:hint="Password"
+        android:hint="@string/passwordStr"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
@@ -48,12 +48,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bSignIn"
+        android:id="@+id/signInButton"
         android:layout_width="88dp"
         android:layout_height="0dp"
         android:layout_marginBottom="144dp"
         android:text="@string/buttonText"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordField"
+        app:layout_constraintTop_toBottomOf="@+id/passwordField" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/signInBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        app:backgroundTint="@color/forestGreen"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
