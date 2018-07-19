@@ -14,6 +14,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     Button signUpButton;
@@ -88,20 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
                         return params;
                     }
                 };
-<<<<<<< HEAD
-<<<<<<< HEAD
                 Volley.newRequestQueue(getApplicationContext()).add(postRequest);
-            }
-        });
-    }
-=======
-
->>>>>>> 1ab61c6... Fixed bracket, import, and formatting errors
-=======
-                Volley.newRequestQueue(getApplicationContext()).add(postRequest);
->>>>>>> 5606f23... Added code to create request queue and add the postRequest
             }
         });
     }
 }
-
