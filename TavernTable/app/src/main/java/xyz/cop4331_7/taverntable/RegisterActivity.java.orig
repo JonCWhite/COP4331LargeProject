@@ -1,0 +1,168 @@
+package xyz.cop4331_7.taverntable;
+
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+<<<<<<< HEAD
+import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+=======
+
+import com.android.volley.Request;
+>>>>>>> 0f33aa2... Added support for registering new users.
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+<<<<<<< HEAD
+=======
+import org.json.JSONException;
+import org.json.JSONObject;
+
+>>>>>>> 0f33aa2... Added support for registering new users.
+import java.util.HashMap;
+import java.util.Map;
+
+public class RegisterActivity extends AppCompatActivity {
+<<<<<<< HEAD
+    RequestQueue requestQueue;
+    String signUpUrl = "http://cop4331-7.xyz/signUp.php";
+    Button submitButton;
+    EditText regUsername, regPassword, regEmail;
+=======
+    Button signUpButton;
+    EditText etUsername, etEmail, etPassword;
+    FloatingActionButton backButton;
+    String username, email, password;
+    static final String url = "http://cop4331-7.xyz/signUp.php";
+>>>>>>> 0f33aa2... Added support for registering new users.
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+<<<<<<< HEAD
+        // Initialize view variables and requestqueue
+        submitButton = (Button) findViewById(R.id.signUpButton);
+        regUsername = (EditText) findViewById(R.id.registerUsernameField);
+        regPassword = (EditText) findViewById(R.id.registerPasswordField);
+        regEmail = (EditText) findViewById(R.id.registerEmailField);
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        // Configure submit and back buttons
+        configureBackButton();
+        configureSubmitButton();
+    }
+
+    // Configures submit button so that it will send a JSON with user information to be added to
+    // the database.
+    public void configureSubmitButton() {
+        final TextView test = (TextView) findViewById(R.id.testTextView);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Custom response listener
+                StringRequest request = new StringRequest(Request.Method.POST, signUpUrl, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                // Custom error listener
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+                    // Create map to store form information.
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> parameters = new HashMap<String, String>();
+                        parameters.put("username", regUsername.getText().toString());
+                        parameters.put("password", regPassword.getText().toString());
+                        parameters.put("email", regEmail.getText().toString());
+
+                        return parameters;
+                    }
+                };
+                requestQueue.add(request);
+            }
+        });
+=======
+        // Initialize variables from UI elements
+        signUpButton = (Button) findViewById(R.id.signUpButton);
+        etUsername = (EditText) findViewById(R.id.registerUsernameField);
+        etEmail = (EditText) findViewById(R.id.registerEmailField);
+        etPassword = (EditText) findViewById(R.id.registerPasswordField);
+        backButton = (FloatingActionButton) findViewById(R.id.registerBackButton);
+
+        // Configure submit and back buttons
+        configureBackButton();
+        configureSignUpButton();
+>>>>>>> 0f33aa2... Added support for registering new users.
+    }
+
+    // Configure back button to end this activity and return to the main activity.
+    public void configureBackButton() {
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    public void configureSignUpButton() {
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                username = etUsername.getText().toString();
+                password = etPassword.getText().toString();
+                email = etEmail.getText().toString();
+
+                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonResponse = new JSONObject(response);
+                                    String userID = jsonResponse.getString("userID"),
+                                            error = jsonResponse.getString("error");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                error.printStackTrace();
+                            }
+                        }
+                ) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<>();
+
+                        // POST parameters
+                        params.put("username", username);
+                        params.put("password", password);
+                        params.put("email", email);
+
+                        return params;
+                    }
+                };
+                Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+            }
+        });
+    }
+}
