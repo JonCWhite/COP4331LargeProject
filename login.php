@@ -27,14 +27,11 @@ if ($connection->connect_error) {
   // We take the passed in password.
   $password = $_POST['password'];
 
-  // We take the passed in email.
-  $email = $_POST['email'];
-
   // We produce a hash value with our passed in password.
   $hash = hash('sha256', $password);
 
-  // We return the userID that has the same username, password hash value, and email associated with it.
-  $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$hash' AND email = '$email'";
+  // We return the userID that has the same username and password hash value associated with it.
+  $query = "SELECT userID FROM Users WHERE username = '$username' AND password = '$hash'";
 
   // We perform our query.
   $result = $connection->query($query);
@@ -57,7 +54,7 @@ if ($connection->connect_error) {
       sendResultInfo($userID);
     } else {
 
-      // If there are no rows that have the same passed in username, password hash value, and email, we send an error to the returnWithError method indicating that this user does not exist in our Users table.
+      // If there are no rows that have the same passed in username and password hash value, we send an error to the returnWithError method indicating that this user does not exist in our Users table.
       returnWithError("This user does not exist");
     }
   }
