@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         // Configure test buttons. These will be removed before the app is published.
         configurePlayerSessionButton();
         configureDmSessionButton();
+        configureNotesButton();
     }
 
     // Button functionality for the returning user button. Allows users to sign in.
@@ -31,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            }
+        });
+    }
+
+    private void configureNotesButton() {
+        Button returnUserButton = (Button) findViewById(R.id.notesButton);
+        // Add an onClickListener to the button and configure it to start the sign in activity when
+        // pressed.
+        returnUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, CharacterNotes.class));
             }
         });
     }
