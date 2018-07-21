@@ -32,7 +32,16 @@
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".PlayerSessionActivity" />
-        <activity android:name=".DMSessionActivity"></activity>
+        <activity android:name=".DMSessionActivity" />
+        <activity
+            android:name=".CharacterNotes"
+            android:label="@string/title_activity_character_notes"
+            android:parentActivityName=".UserAreaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
+        </activity>
     </application>
 
 </manifest>
