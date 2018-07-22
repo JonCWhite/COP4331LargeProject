@@ -97,9 +97,8 @@ public class SignInActivity extends AppCompatActivity
                                     else
                                     {
 
-                                        System.out.println("SUCCESS");
-                                        Intent intent = new Intent(SignInActivity.this, createCharacter.class);
-                                        startActivity(intent);
+                                        //Intent intent = new Intent(SignInActivity.this, createCharacter.class);
+                                        //startActivity(intent);
 
                                     }
 
