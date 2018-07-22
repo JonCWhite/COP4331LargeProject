@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StandIn_SelectUserTypeActivity">
+
+    <Button
+        android:id="@+id/bPlayer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/player_text"
+        app:layout_constraintBottom_toTopOf="@+id/gUserType"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/bDM"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/dungeon_master_text"
+        app:layout_constraintTop_toTopOf="@+id/gUserType"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/gUserType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/tavern_table_text"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintBottom_toTopOf="@+id/tvIAm"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/tvIAm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/i_am_a_text"
+        app:fontFamily="sans-serif-smallcaps"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/bPlayer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageButton
+        android:id="@+id/bFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_friends"
+        android:background="@android:color/transparent"
+        android:layout_margin="16dp"
+        android:contentDescription="Friend button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>

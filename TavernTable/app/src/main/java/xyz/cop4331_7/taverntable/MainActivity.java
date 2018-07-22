@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         returnUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SignInActivity.class));
+                startActivity(new Intent(MainActivity.this, StandIn_SignInActivity.class));
             }
         });
     }
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         newUserButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                    startActivity(new Intent(MainActivity.this, StandIn_RegisterActivity.class));
                 }
             }
         );
