@@ -32,7 +32,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".createCharacter"></activity>
+        <activity android:name=".createCharacter" />
+        <activity android:name=".setCharacterRolls"></activity>
     </application>
 
 </manifest>

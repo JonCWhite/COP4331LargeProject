@@ -27,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity
     EditText etUsername, etEmail, etPassword, etConfirmPassword;
     FloatingActionButton backButton;
     String username, email, password, confirmPassword;
-    static final String signUpURL = "http://cop4331-7.xyz/signUp.php";
+    static final String signUpURL = "http://cop4331-7.xyz/system/signUp.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -99,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity
                                         }
                                         else
                                             {
-                                            System.out.println("SUCCESS");
                                             Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
                                             RegisterActivity.this.startActivity(intent);
 

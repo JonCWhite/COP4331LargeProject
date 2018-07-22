@@ -28,7 +28,7 @@ public class SignInActivity extends AppCompatActivity
     EditText etUsername, etPassword;
     FloatingActionButton backButton;
     String username, password;
-    static final String signInURL = "http://cop4331-7.xyz/login.php";
+    static final String signInURL = "http://cop4331-7.xyz/system/login.php";
 
 
     // Begin sign in activity and configure UI elements.
@@ -98,7 +98,7 @@ public class SignInActivity extends AppCompatActivity
                                     {
 
                                         System.out.println("SUCCESS");
-                                        Intent intent = new Intent(SignInActivity.this, UserAreaActivity.class);
+                                        Intent intent = new Intent(SignInActivity.this, createCharacter.class);
                                         startActivity(intent);
 
                                     }

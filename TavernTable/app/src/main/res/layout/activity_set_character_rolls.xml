@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setCharacterRolls"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="INT"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="215dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="DEX"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <TextView
+        android:id="@+id/tDrag2"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num2"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag3"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num3"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag4"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num4"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag5"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num5"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="265dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag6"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num6"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="329dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="CHA"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="337dp" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="CON"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="398dp" />
+
+    <TextView
+        android:id="@+id/tDrag1"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num1"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/bSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="272dp"
+        tools:layout_editor_absoluteY="446dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="WIS"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="STR"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="93dp" />
+</android.support.constraint.ConstraintLayout>
