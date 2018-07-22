@@ -10,7 +10,7 @@ Professor Richard Leinecker
 // We set these variables to the correct information in order to access the database.
 $hostname = 'localhost';
 $username = 'root';
-$password = 'Imkh1997';
+$password = 'contactmanager7';
 $databaseName = 'dndApp';
 
 // We establish a connection to the database.
