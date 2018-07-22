@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Dice extends AppCompatActivity {
    // RequestQueue requestQueue;
-    private static final String LOGIN_REQUEST_URL = "http://cop4331-7.xyz/tavernTable/Dice.php";
+    //private static final String LOGIN_REQUEST_URL = "http://cop4331-7.xyz/tavernTable/Dice.php";
     public int value;
     Random rand = new Random();
     @Override
