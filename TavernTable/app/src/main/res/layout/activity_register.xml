@@ -15,6 +15,7 @@
         android:textColor="@android:color/holo_orange_light"
         android:textSize="36sp"
         android:textStyle="bold"
+        android:layout_marginBottom="100dp"
         app:fontFamily="sans-serif-smallcaps"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -102,5 +103,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
