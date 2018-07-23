@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         // Configure test buttons. These will be removed before the app is published.
         configurePlayerSessionButton();
         configureDmSessionButton();
-        configureSelect();
     }
 
     // Button functionality for the returning user button. Allows users to sign in.
