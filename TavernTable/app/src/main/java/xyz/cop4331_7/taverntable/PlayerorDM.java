@@ -14,28 +14,35 @@ public class PlayerorDM extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playeror_dm);
 
-        configureselectPlayer();
-        configureselectDM();
+        // receive userID from SignIn
+        Intent intent = getIntent();
+        String userID = intent.getExtras().getString("userid");
+
+        configureselectPlayer(userID);
+        configureselectDM(userID);
 
     }
 
-    private void configureselectPlayer() {
+    private void configureselectPlayer(final String id) {
         Button selectPlayer = (Button) findViewById(R.id.selectPlayer);
         selectPlayer.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(xyz.cop4331_7.taverntable.PlayerorDM.this, PlayerSelectionofCampaign.class));
+                Intent intent = new Intent(PlayerorDM.this, PlayerSelectionofCampaign.class);
+                intent.putExtra("userid", id );
+                startActivity(intent);
             }
         }));
     }
 
-    private void configureselectDM() {
+    private void configureselectDM(final String id) {
         Button selectDM = (Button) findViewById(R.id.selectDM);
         selectDM.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(xyz.cop4331_7.taverntable.PlayerorDM.this, DMSelectionofCampaign.class));
-            }
+                Intent intent = new Intent(PlayerorDM.this, DMSelectionofCampaign.class);
+                intent.putExtra("userid", id );
+                startActivity(intent);            }
         }));
     }
 }

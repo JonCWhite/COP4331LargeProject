@@ -1,5 +1,6 @@
 package xyz.cop4331_7.taverntable;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,7 +75,9 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
 
                 // POST parameters
-                params.put("userID", "114");
+                Intent intent = getIntent();
+                String user = intent.getExtras().getString("userid");
+                params.put("userID", user);
 
                 return params;
             }
