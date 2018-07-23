@@ -28,12 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".PlayerSelectionofCampaign" />
+        <activity android:name=".DMSelectionofCampaign" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".PlayerSessionActivity" />
-        <activity android:name=".DMSessionActivity"></activity>
+        <activity android:name=".DMSessionActivity" />
+        <activity android:name=".PlayerorDM"/>
     </application>
 
 </manifest>
