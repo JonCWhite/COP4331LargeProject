@@ -33,18 +33,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void configureSelect() {
-        Button select = (Button) findViewById(R.id.selectCampaigns);
-        // Add an onClickListener to the button and configure it to start the sign in activity when
-        // pressed.
-        select.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, PlayerorDM.class));
-            }
-        });
-    }
-
     // Button functionality for new users button. Allows users to sign up.
     private void configureNewUserButton() {
         Button newUserButton = (Button) findViewById(R.id.newUserButton);
