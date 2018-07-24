@@ -1,26 +1,48 @@
 package xyz.cop4331_7.taverntable;
 
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.DragEvent;
-import android.view.MotionEvent;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class setCharacterRolls extends AppCompatActivity
 {
     // Variable declarations
     private TextView tvNum1, tvNum2, tvNum3, tvNum4, tvNum5, tvNum6;
-    private TextView tvSTR, tvDEX, tvINT, tvWIS, tvCHA, tvCON;
-    String roll1, roll2, roll3, roll4, roll5, roll6;
-    String roll1Num, roll2Num, roll3Num, roll4Num, roll5Num, roll6Num;
+    private EditText etSTR, etDEX, etINT, etWIS, etCHA, etCON;
+    private String charName;
+    private String raceSelected, classSelected;
+    private String roll1, roll2, roll3, roll4, roll5, roll6;
+    private String inputSTR, inputDEX, inputINT, inputWIS, inputCHA, inputCON;
     private Button bSubmit;
+    private int posSTR, posDEX, posINT, posWIS, posCHA, posCON;
 
+    // Holds all the rolls in 1 array
+    private ArrayList<String> rollsArray = new ArrayList<String>();
 
+    // URL to send request
+    static final String SEND_CHARACTER_URL = "http://cop4331-7.xyz/system/initializeCharacter.php";
+
+    private String userID; // Holds userID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +60,25 @@ public class setCharacterRolls extends AppCompatActivity
         roll5 = intent.getStringExtra("roll5");
         roll6 = intent.getStringExtra("roll6");
 
-        // Get TextView id's
+        // Get userID from previous intent
+        userID = intent.getStringExtra("userID");
+
+        // Get the character name, class and race of the character.
+        charName = intent.getStringExtra("charName");
+        raceSelected = intent.getStringExtra("raceSelected");
+        classSelected = intent.getStringExtra("classSelected");
+
+
+        // Add the rolls to an array to check with later
+        rollsArray.add(roll1);
+        rollsArray.add(roll2);
+        rollsArray.add(roll3);
+        rollsArray.add(roll4);
+        rollsArray.add(roll5);
+        rollsArray.add(roll6);
+
+
+        // Get TextView Id's
         tvNum1 = (TextView) findViewById(R.id.tDrag1);
         tvNum2 = (TextView) findViewById(R.id.tDrag2);
         tvNum3 = (TextView) findViewById(R.id.tDrag3);
@@ -46,12 +86,22 @@ public class setCharacterRolls extends AppCompatActivity
         tvNum5 = (TextView) findViewById(R.id.tDrag5);
         tvNum6 = (TextView) findViewById(R.id.tDrag6);
 
-        tvSTR = (TextView) findViewById(R.id.tvSTR);
-        tvDEX = (TextView) findViewById(R.id.tvDEX);
-        tvINT = (TextView) findViewById(R.id.tvINT);
-        tvWIS = (TextView) findViewById(R.id.tvWIS);
-        tvCHA = (TextView) findViewById(R.id.tvCHA);
-        tvCON = (TextView) findViewById(R.id.tvCON);
+        // Input Id's
+        etSTR = (EditText) findViewById(R.id.etInputSTR);
+        etDEX = (EditText) findViewById(R.id.etInputDEX);
+        etINT = (EditText) findViewById(R.id.etInputINT);
+        etWIS = (EditText) findViewById(R.id.etInputWIS);
+        etCHA = (EditText) findViewById(R.id.etInputCHA);
+        etCON = (EditText) findViewById(R.id.etInputCON);
+
+        // Set min and maximum number allowed as an input
+        etSTR.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+        etDEX.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+        etINT.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+        etWIS.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+        etCHA.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+        etCON.setFilters(new InputFilter[] {new InputFilterMinMax("1", "20")});
+
 
         // Set TextView to the roll numbers
         tvNum1.setText(roll1);
@@ -61,130 +111,196 @@ public class setCharacterRolls extends AppCompatActivity
         tvNum5.setText(roll5);
         tvNum6.setText(roll6);
 
-        // Set TextView to be draggable
-        tvNum1.setOnTouchListener(onTouch);
-        tvNum2.setOnTouchListener(onTouch);
-        tvNum3.setOnTouchListener(onTouch);
-        tvNum4.setOnTouchListener(onTouch);
-        tvNum5.setOnTouchListener(onTouch);
-        tvNum6.setOnTouchListener(onTouch);
 
-        // Targets to be dropped on
-        tvSTR.setOnDragListener(dragListener);
-        tvDEX.setOnDragListener(dragListener);
-        tvINT.setOnDragListener(dragListener);
-        tvWIS.setOnDragListener(dragListener);
-        tvCHA.setOnDragListener(dragListener);
-        tvCON.setOnDragListener(dragListener);
+        // Set up Submit button
+        bSubmit = (Button) findViewById(R.id.bSubmit);
 
 
-        roll1Num = tvNum1.getText().toString();
-
-    }
-
-    View.OnTouchListener onTouch = new View.OnTouchListener()
-    {
-
-        @Override
-        public boolean onTouch(View v, MotionEvent mEvent)
+        // TextWatcher shows pop up for valid/invalid inputs
+        etSTR.addTextChangedListener(new TextWatcher()
         {
-            ClipData data = ClipData.newPlainText("", "");
-            View.DragShadowBuilder shadowBuild = new View.DragShadowBuilder(v);
-            v.startDrag(data, shadowBuild, v, 0);
-            return true;
-        }
-    };
 
-
-    View.OnDragListener dragListener = new View.OnDragListener()
-    {
-
-        @Override
-        public boolean onDrag(View v, DragEvent event)
-        {
-            if(event.getAction() == DragEvent.ACTION_DROP)
+            @Override
+            public void afterTextChanged(Editable s)
             {
-                //handle the dragged view being dropped over a target view
-                TextView dropped = (TextView)event.getLocalState();
-                TextView dropTarget = (TextView) v;
-                //stop displaying the view where it was before it was dragged
-                dropped.setVisibility(View.INVISIBLE);
-
-                //if an item has already been dropped here, there will be different string
-                String text = dropTarget.getText().toString();
-                //if there is already an item here, set it back visible in its original place
-                if(text.equals(tvNum1.getText().toString())) tvNum1.setVisibility(View.VISIBLE);
-                else if(text.equals(tvNum2.getText().toString())) tvNum2.setVisibility(View.VISIBLE);
-                else if(text.equals(tvNum3.getText().toString())) tvNum3.setVisibility(View.VISIBLE);
-                else if(text.equals(tvNum4.getText().toString())) tvNum4.setVisibility(View.VISIBLE);
-                else if(text.equals(tvNum5.getText().toString())) tvNum5.setVisibility(View.VISIBLE);
-                else if(text.equals(tvNum6.getText().toString())) tvNum6.setVisibility(View.VISIBLE);
-
-                //update the text and color in the target view to reflect the data being dropped
-                //if(dropTarget.equals())
-
-                dropTarget.setText(dropped.getText());
-                //dropTarget.setBackgroundColor(Color.BLUE);
+                if (rollsArray.contains(etSTR.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                }
             }
 
-            /*int dragEvent = event.getAction();
-            final View view = (View) event.getLocalState();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
 
-            switch(dragEvent)
+        etDEX.addTextChangedListener(new TextWatcher()
+        {
+
+            @Override
+            public void afterTextChanged(Editable s)
             {
-                case DragEvent.ACTION_DRAG_STARTED:
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    break;
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    break;
-                case DragEvent.ACTION_DROP: {
-                    TextView dropped = (TextView) event.getLocalState();
-                    TextView dropTarget = (TextView) v;
+                if (rollsArray.contains(etDEX.getText().toString()))
 
-                    dropped.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+            }
 
-                    String text = dropTarget.getText().toString();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
 
-                    if (text.equals(tvNum1.getText().toString()))
-                        tvNum1.setVisibility(View.VISIBLE);
-                    else if (text.equals(tvNum2.getText().toString()))
-                        tvNum1.setVisibility(View.VISIBLE);
-                    else if (text.equals(tvNum3.getText().toString()))
-                        tvNum1.setVisibility(View.VISIBLE);
+        etINT.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (rollsArray.contains(etINT.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+            }
 
-                    dropTarget.setText(dropped.getText());
-                    dropTarget.setBackgroundColor(Color.BLUE);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
+
+        etWIS.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (rollsArray.contains(etWIS.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
+
+        etCHA.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (rollsArray.contains(etCHA.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
+
+        etCON.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (rollsArray.contains(etCON.getText().toString()))
+                    Toast.makeText(getApplicationContext(), "Valid!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+        });
+
+
+
+        // Configures submit button to be used
+        configureSubmit();
+    }
+
+
+    // Configures submit button.
+    // Sends the request to the server
+    public void configureSubmit()
+    {
+        bSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                // If all the numbers from the rolls are used, then send the request.
+                if(rollsArray.contains(etSTR.getText().toString()) && rollsArray.contains(etDEX.getText().toString())
+                        && rollsArray.contains(etINT.getText().toString()) && rollsArray.contains(etWIS.getText().toString())
+                        && rollsArray.contains(etCHA.getText().toString()) && rollsArray.contains(etCON.getText().toString()))
+                {
+                    // Get all the inputs and save to their respective Strings
+                    inputSTR = etSTR.getText().toString();
+                    inputDEX = etDEX.getText().toString();
+                    inputINT = etINT.getText().toString();
+                    inputWIS = etWIS.getText().toString();
+                    inputCHA = etCHA.getText().toString();
+                    inputCON = etCON.getText().toString();
+
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, SEND_CHARACTER_URL, null, null) {
+                        @Override
+                        protected Map<String, String> getParams()
+                        {
+                            Map<String, String> params = new HashMap<>();
+
+                            // POST parameters
+                            params.put("Name", charName);
+                            params.put("raceName", raceSelected);
+                            params.put("className", classSelected);
+                            params.put("rollDex", inputSTR);
+                            params.put("rollCha", inputCHA);
+                            params.put("rollStr", inputSTR);
+                            params.put("rollCon", inputSTR);
+                            params.put("rollInt", inputINT);
+                            params.put("rollWis", inputWIS);
+                            params.put("userID", userID);
+
+                            return params;
+                        }
+                    };
+
+                    Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+
+                    Intent intent = new Intent(setCharacterRolls.this, UserAreaActivity.class);
+                    setCharacterRolls.this.startActivity(intent);
+
                 }
-                    if(view.getId() == R.id.tDrag2 && view.getId() == R.id.tvSTR)
-                    {
-                        String a = tvNum2.getText().toString();
-                        String b = tvSTR.getText().toString();
 
-                        a = a + b;
-                        b = a.substring(0, (a.length() - b.length()));
-                        a = a.substring(b.length());
-
-                        tvSTR.setText(a);
-                        tvNum2.setText(b);
-                    }
-
-
-
-                    break;
-                case DragEvent.ACTION_DRAG_ENDED:
-                    break;
-                default:
-                    break;
+                // Check for empty input
+                else if ((isFieldEmpty(etSTR) || isFieldEmpty(etDEX) || isFieldEmpty(etINT) ||
+                        isFieldEmpty(etWIS) || isFieldEmpty(etCHA) || isFieldEmpty(etCON))== true)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(setCharacterRolls.this);
+                    builder.setMessage("Input(s) cannot be empty.")
+                            .setNegativeButton("Try Again", null)
+                            .create().show();
+                }
+                // Inputs not allowed. They are not from the rolled numbers.
+                else
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(setCharacterRolls.this);
+                    builder.setMessage("Invalid input(s).")
+                            .setNegativeButton("Try Again", null)
+                            .create().show();
+                }
 
 
 
+            }
+        });
+    }
 
-            }*/
 
-            System.out.println("INT " + tvINT);
-
-            return true;
-        }
-    };
+   // This function checks if the EditText field is empty.
+   private boolean isFieldEmpty(EditText myeditText) {
+       return myeditText.getText().toString().trim().length() == 0;
+   }
 }

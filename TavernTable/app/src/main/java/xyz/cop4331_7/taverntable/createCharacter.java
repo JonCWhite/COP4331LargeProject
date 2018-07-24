@@ -1,30 +1,17 @@
 package xyz.cop4331_7.taverntable;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class createCharacter extends AppCompatActivity
@@ -37,31 +24,51 @@ public class createCharacter extends AppCompatActivity
 
     // To get the TextViews and save onto the Strings for the next intent
     private TextView tvRoll1, tvRoll2, tvRoll3, tvRoll4, tvRoll5, tvRoll6;
+    private EditText etCharName;
     private String roll1, roll2, roll3, roll4, roll5, roll6;
+    private String charName;
+    private String userID;
 
     // Spinners (drop down) for race and class
     Spinner raceSpinner;
     Spinner classSpinner;
+    private String raceSelected, classSelected;
 
-    // URL where php is stored
-    String CHARACTER_URL="http://cop4331-7.xyz/system/CharacterSheet.php";
 
-    // ArrayList for race names and class names
-    ArrayList<String> raceName;
-    ArrayList<String> className;
+    // Class and Race names
+    String[] nameOfRace = {"Dark Elf", "Dragonborn", "Forest Gnome", "Half Orc", "Half-Elf", "High Elf"
+                          ,"Hill Dwarf", "Human", "Lightfoot Halfling", "Mountain Dwarf", "Rock Gnome"
+                          ,"Stout Halfling", "Tiefling", "Wood Elf"};
+    String[] nameOfClass = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin"
+                           ,"Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
+
+    // Get user ID
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        // Get previous intent to get the userID
+        Intent prevIntent = getIntent();
+        userID = prevIntent.getStringExtra("userID");
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_character);
-        raceName=new ArrayList<>();
-        raceSpinner=(Spinner)findViewById(R.id.sRace);
-        loadSpinnerData(CHARACTER_URL);
+        raceSpinner = (Spinner)findViewById(R.id.sRace);
+        classSpinner = (Spinner) findViewById(R.id.sClass);
+
+
+
 
         // Find Buttons by id
         bRollDie = (Button) findViewById(R.id.bRollDie);
         bSubmit = (Button) findViewById(R.id.bSubmit);
         bSubmit.setEnabled(false); // Disable Submit button until 6th roll
+
+
+        etCharName = (EditText) findViewById(R.id.etCharName);
 
         // Get TextView id's
         tvRoll1 = (TextView) findViewById(R.id.tvRoll1);
@@ -75,15 +82,20 @@ public class createCharacter extends AppCompatActivity
         configureRollDie();
         configureSubmit();
 
+
+
         // If the race spinner is selected, show the selected spinner
         raceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
             {
-                String race = raceSpinner.getItemAtPosition(raceSpinner.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),race,Toast.LENGTH_LONG).show();
+                //String race = raceSpinner.getItemAtPosition(raceSpinner.getSelectedItemPosition()).toString();
+                Toast.makeText(getApplicationContext(),nameOfRace[position],Toast.LENGTH_LONG).show();
 
+
+
+                //android.R.layout.simple_spinner_dropdown_item, raceName
                // String charClass = classSpinner
             }
 
@@ -93,52 +105,38 @@ public class createCharacter extends AppCompatActivity
                 // DO Nothing here
             }
         });
+        ArrayAdapter arrayRace = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nameOfRace);
+        arrayRace.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        raceSpinner.setAdapter(arrayRace);
 
-    }
 
-    // This function loads the Race spinner with the information from the database
-    private void loadSpinnerData(String url)
-    {
-        RequestQueue requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
+        // // If the class spinner is selected, show the selected spinner
+        classSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
-            public void onResponse(String response)
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
             {
-                try
-                {
-                    JSONObject jsonObject=new JSONObject(response);
-                        JSONArray jsonArray=jsonObject.getJSONArray("raceResult");
-                        for(int i=0;i<jsonArray.length();i++)
-                        {
-                            JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                            String race =jsonObject1.getString("raceName");
-                            raceName.add(race);
-                        }
+                //String race = raceSpinner.getItemAtPosition(raceSpinner.getSelectedItemPosition()).toString();
+                Toast.makeText(getApplicationContext(),nameOfClass[position],Toast.LENGTH_LONG).show();
 
-                    raceSpinner.setAdapter(new ArrayAdapter<String>(createCharacter.this, android.R.layout.simple_spinner_dropdown_item, raceName));
-                }
-                // Catch JSON error
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
+
+
+                //android.R.layout.simple_spinner_dropdown_item, raceName
+                // String charClass = classSpinner
             }
-        }, new Response.ErrorListener() // Get Volley errors
-        {
+
             @Override
-            public void onErrorResponse(VolleyError error)
+            public void onNothingSelected(AdapterView<?> adapterView)
             {
-                error.printStackTrace();
+                // DO Nothing here
             }
         });
 
-        //Attempts to prepare the request for a retry. If there are no more attempts remaining in the
-        // request's retry policy, a timeout exception is thrown.
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
+        ArrayAdapter arrayClass = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nameOfClass);
+        arrayRace.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        classSpinner.setAdapter(arrayClass);
+
+
     }
 
 
@@ -204,28 +202,53 @@ public class createCharacter extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                // Save the rolls onto a String
-                roll1 = tvRoll1.getText().toString();
-                roll2 = tvRoll2.getText().toString();
-                roll3 = tvRoll3.getText().toString();
-                roll4 = tvRoll4.getText().toString();
-                roll5 = tvRoll5.getText().toString();
-                roll6 = tvRoll6.getText().toString();
+                // If character name is less than 4 characters, try again
+                if (etCharName.getText().toString().trim().length() < 4) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(createCharacter.this);
+                    builder.setMessage("Character name must at least 4 characters.")
+                            .setNegativeButton("Try Again", null)
+                            .create().show();
+                }
+                else
+                {
+                    // Get the character name
+                    charName = etCharName.getText().toString();
 
-                // Create new intent
-                Intent intent = new Intent(createCharacter.this, setCharacterRolls.class);
 
-                // Push the rolled numbers onto the next intent
-                intent.putExtra("roll1", roll1);
-                intent.putExtra("roll2", roll2);
-                intent.putExtra("roll3", roll3);
-                intent.putExtra("roll4", roll4);
-                intent.putExtra("roll5", roll5);
-                intent.putExtra("roll6", roll6);
+                    // Get Race and Class selected
+                    raceSelected = raceSpinner.getSelectedItem().toString();
+                    classSelected = classSpinner.getSelectedItem().toString();
 
-                // Start the new intent
-                createCharacter.this.startActivity(intent);
+                    // Save the rolls onto a String
+                    roll1 = tvRoll1.getText().toString();
+                    roll2 = tvRoll2.getText().toString();
+                    roll3 = tvRoll3.getText().toString();
+                    roll4 = tvRoll4.getText().toString();
+                    roll5 = tvRoll5.getText().toString();
+                    roll6 = tvRoll6.getText().toString();
 
+                    // Create new intent
+                    Intent intent = new Intent(createCharacter.this, setCharacterRolls.class);
+
+                    // Push the rolled numbers onto the next intent
+                    intent.putExtra("roll1", roll1);
+                    intent.putExtra("roll2", roll2);
+                    intent.putExtra("roll3", roll3);
+                    intent.putExtra("roll4", roll4);
+                    intent.putExtra("roll5", roll5);
+                    intent.putExtra("roll6", roll6);
+
+                    // Push userID
+                    intent.putExtra("userID", userID);
+
+                    // Push characer name, race selected and class selected
+                    intent.putExtra("charName", charName);
+                    intent.putExtra("raceSelected", raceSelected);
+                    intent.putExtra("classSelected", classSelected);
+
+                    // Start the new intent
+                    createCharacter.this.startActivity(intent);
+                }
 
             }
         });
