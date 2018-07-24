@@ -31,8 +31,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"
+<<<<<<< HEAD
             android:windowSoftInputMode="stateHidden|adjustResize"
         />
+=======
+>>>>>>> master
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".PlayerSessionActivity" />
