@@ -21,4 +21,21 @@
     <string name="i_am_a_text">I am a...</string>
     <string name="sumbit_text">Sumbit</string>
     <string name="add_a_new_friend_text">Add a new friend</string>
+    <string name="placeholder_text">placeholder</string>
+    <string name="stats_button_text">stats button</string>
+    <string name="other_button_text">Other button</string>
+    <string name="health_button_text">Health button</string>
+    <string name="magic_button_text">Magic button</string>
+    <string name="inventory_button_text">Inventory button</string>
+    <string name="personality_button_text">Personality button</string>
+    <string name="feats_traits_button_text">Feats/traits button</string>
+    <string name="proficiencies_hint_text">This is where your proficiencies go.</string>
+    <string name="strength_text">Strength</string>
+    <string name="dexterity_text">Dexterity</string>
+    <string name="constitution_text">Constitution</string>
+    <string name="intelligence_text">Intelligence</string>
+    <string name="wisdom_text">Wisdom</string>
+    <string name="charisma_text">Charisma</string>
+    <string name="profieciencies_text">Profieciencies</string>
+    <string name="proficiency_bonus_text">Proficiency Bonus</string>
 </resources>

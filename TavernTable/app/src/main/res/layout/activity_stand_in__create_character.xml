@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StandIn_CreateCharacter">
+
+    <Button
+        android:id="@+id/bSubmit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        android:layout_marginTop="276dp"
+        android:gravity="center"
+        android:text="SUBMIT"
+        app:layout_constraintBottom_toTopOf="@+id/tvRoll6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bRollDie"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRoll2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:hint="Roll 2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvRoll3"
+        app:layout_constraintStart_toEndOf="@+id/tvRoll1"
+        app:layout_constraintTop_toBottomOf="@+id/bRollDie" />
+
+    <TextView
+        android:id="@+id/tvRoll3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:hint="Roll 3"
+        app:layout_constraintBottom_toTopOf="@+id/tvRoll5"
+        app:layout_constraintEnd_toStartOf="@+id/tvRoll4"
+        app:layout_constraintStart_toEndOf="@+id/tvRoll2"
+        app:layout_constraintTop_toBottomOf="@+id/etCharName" />
+
+    <TextView
+        android:id="@+id/tvRoll4"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:hint="Roll 4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvRoll3"
+        app:layout_constraintEnd_toStartOf="@+id/tvRoll5"
+        app:layout_constraintStart_toEndOf="@+id/tvRoll3" />
+
+    <TextView
+        android:id="@+id/tvRoll5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:gravity="center"
+        android:hint="Roll 5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvRoll6"
+        app:layout_constraintStart_toEndOf="@+id/tvRoll4"
+        app:layout_constraintTop_toBottomOf="@+id/tvRoll3" />
+
+    <TextView
+        android:id="@+id/tvRoll6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:hint="Roll 6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvRoll5"
+        app:layout_constraintTop_toBottomOf="@+id/bSubmit" />
+
+    <Spinner
+        android:id="@+id/sClass"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/bRollDie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sRace" />
+
+    <TextView
+        android:id="@+id/etCharName"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="333dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:hint="Character Name"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvRoll3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sRace"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/sClass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCharName" />
+
+    <TextView
+        android:id="@+id/tvRoll1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:hint="Roll 1"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRoll2"
+        app:layout_constraintEnd_toStartOf="@+id/tvRoll2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvRoll2" />
+
+    <Button
+        android:id="@+id/bRollDie"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="103dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginRight="65dp"
+        android:layout_marginStart="61dp"
+        android:gravity="center"
+        android:text="20d Dice Roll"
+        app:layout_constraintBottom_toTopOf="@+id/tvRoll2"
+        app:layout_constraintEnd_toStartOf="@+id/bSubmit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sClass" />
+
+</android.support.constraint.ConstraintLayout>

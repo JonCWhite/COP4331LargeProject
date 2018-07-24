@@ -10,21 +10,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
-    private String user_name, campaign_name;
+    private String campaign_name, characterID, user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_session);
 
-        // Initialize user and campaign names.
-        user_name = getIntent().getExtras().get("user_name").toString();
+        // Initialize class variables.
         campaign_name = getIntent().getExtras().get("campaign_name").toString();
+        characterID = getIntent().getExtras().get("characterID").toString();
+        user_name = getIntent().getExtras().get("user_name").toString();
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name", user_name);
         bundle.putString("campaign_name", campaign_name);
+        bundle.putString("user_name", user_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -59,8 +60,11 @@ public class PlayerSessionActivity extends AppCompatActivity {
         bSheets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start next activity (currently a placeholder, will have to make this a popup)
-                // startActivity(new Intent(PlayerSessionActivity.this, null));
+                // Start SelectSheetsActivity
+                Intent intent = new Intent(PlayerSessionActivity.this, SelectSheetActivity.class);
+                intent.putExtra("campaignID", campaign_name);
+                intent.putExtra("characterID", "2");
+                startActivity(intent);
             }
         });
     }

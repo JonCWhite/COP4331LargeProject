@@ -58,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PlayerSessionActivity.class);
-                intent.putExtra("campaign_name", "test_campaign");
-                intent.putExtra("user_name", "test_user");
+                intent.putExtra("campaign_name", "4");
+                intent.putExtra("user_name", "MissVanjie");
+                intent.putExtra("characterID", "2");
                 startActivity(intent);
                 }
         });

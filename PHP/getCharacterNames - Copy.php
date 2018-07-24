@@ -17,20 +17,34 @@ if ($connection->connect_error) {
 	returnWithError($connection->connect_error);
 } else {
 	// We take the posted in campaignID
-	$campaignID = $_POST['campaignID'];
-	// We return the userID that has the same username and password hash value associated with it.
-	$query = "SELECT characterID FROM CharactersCampaign WHERE campaignID = '$campaignID'";
+	$campaignID = intval($_POST['campaignID']);
+	// We return the characterIDs that have matching campaignIDs in the CharactersCampaign table.
+	$queryCharacterID = "SELECT characterID FROM CharactersCampaign WHERE campaignID = '$campaignID'";
 	// We perform our query.
-	$result = $connection->query($query);
+	$resultCharacterID = $connection->query($queryCharacterID);
 	// We check whether the query was performed, if not, we return a connection error.
-	if (!$result) {
+	if (!$resultCharacterID) {
 		returnWithError($connection->connect_error);
 	}
 	// Initialize an array to hold our row data.
 	$rows = array();
 	// Iterate through the query results and add the data to the array we created.
-	while ($row = mysqli_fetch_assoc($sth)) {
-		$rows[] = $row;
+	while ($rowCharacterID = mysqli_fetch_assoc($resultCharacterID)) {
+		// We store the current characterID
+		$temp = $rowCharacterID['characterID'];
+		// We return the characterName that have matches characterID in the Characters table.
+		$queryCharacterName = "SELECT name FROM Characters WHERE characterID = $temp";
+		// We perform our query.
+		$resultCharacterName = $connection->query($queryCharacterName);
+		// If our query wasn't executed it means that we have an invalid characterID and we return an error indicating that and exit from the program.
+		if (!$resultCharacterName) {
+			returnWithError("Invalid CharacterID");
+			exit();
+		}
+		// Otherwise, we found a character who matches characterID and store the associated row information.
+		$temp = mysqli_fetch_assoc($resultCharacterName);
+		// We add the character name to our array.
+		$rows[] = $temp['name'];
 	}
 	// Now that we have used our database we can safely close it.
 	$connection->close();

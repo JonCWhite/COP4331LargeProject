@@ -38,7 +38,11 @@
         <activity android:name=".StandIn_SignInActivity" />
         <activity android:name=".StandIn_SelectUserTypeActivity" />
         <activity android:name=".StandIn_CampaignSelectActivity" />
-        <activity android:name=".FriendsListActivity"></activity>
+        <activity android:name=".FriendsListActivity" />
+        <activity android:name=".StandIn_CreateCharacter" />
+        <activity android:name=".StandIn_SetCharacterRolls" />
+        <activity android:name=".CharacterSheetActivity" />
+        <activity android:name=".SheetStatsActivity"></activity>
     </application>
 
 </manifest>
