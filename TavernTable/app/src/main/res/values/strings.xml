@@ -65,10 +65,7 @@
     <string name="abilities_text">Abilities</string>
     <string name="weapons_text">Weapons</string>
     <string name="spells_text">Spells</string>
-<<<<<<< Updated upstream
     <string name="didNotSave">Data wasn\'t saved. Please check internet connection.</string>
-=======
->>>>>>> Stashed changes
     <string name="gold_pieces_text">Gold Pieces</string>
     <string name="silver_pieces_text">Silver Pieces</string>
     <string name="copper_pieces_text">Copper Pieces</string>
@@ -76,4 +73,6 @@
     <string name="spell_save_dc_text">Spell Save DC</string>
     <string name="spell_attack_bonus_text">Spell Attack Bonus</string>
     <string name="equipment_text">Equipment</string>
+    <string name="languages">Languages</string>
+    <string name="item_proficiencies_text">Item Proficiencies</string>
 </resources>
