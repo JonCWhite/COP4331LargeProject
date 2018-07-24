@@ -42,7 +42,13 @@
         <activity android:name=".StandIn_CreateCharacter" />
         <activity android:name=".StandIn_SetCharacterRolls" />
         <activity android:name=".CharacterSheetActivity" />
-        <activity android:name=".SheetStatsActivity"></activity>
+        <activity android:name=".SheetStatsActivity" />
+        <activity android:name=".SheetHealthActivity" />
+        <activity android:name=".SheetCharacterBackgroundActivity" />
+        <activity android:name=".sheetPersonalityActivity" />
+        <activity android:name=".SheetFeaturesActivity" />
+        <activity android:name=".SheetAbilitiesActivity" />
+        <activity android:name=".SheetInventoryActivity"></activity>
     </application>
 
 </manifest>

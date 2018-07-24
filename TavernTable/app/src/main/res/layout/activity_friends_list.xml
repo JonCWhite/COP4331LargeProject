@@ -28,7 +28,7 @@
             android:id="@+id/bFriendRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sumbit_text" />
+            android:text="@string/submit_text" />
     </LinearLayout>
 
     <ScrollView
