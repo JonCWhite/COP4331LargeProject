@@ -48,7 +48,8 @@
         <activity android:name=".sheetPersonalityActivity" />
         <activity android:name=".SheetFeaturesActivity" />
         <activity android:name=".SheetAbilitiesActivity" />
-        <activity android:name=".SheetInventoryActivity"></activity>
+        <activity android:name=".SheetInventoryActivity" />
+        <activity android:name=".SheetOtherActivity"></activity>
     </application>
 
 </manifest>

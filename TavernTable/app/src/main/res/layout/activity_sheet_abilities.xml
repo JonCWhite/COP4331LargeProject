@@ -64,6 +64,95 @@
                 android:background="#FFFFFF"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Spell casting ability -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spell_casting_ability_text"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <TextView
+                    android:id="@+id/tvSpellCastAbility"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/placeholder_text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <!-- Spell save DC -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spell_save_dc_text"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <TextView
+                    android:id="@+id/tvSpellSaveDC"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/placeholder_text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <!-- Spell attack bonus -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spell_attack_bonus_text"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <TextView
+                    android:id="@+id/tvSpellBonus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/placeholder_text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!-- Character spells field. -->
         <LinearLayout
             android:layout_width="match_parent"
