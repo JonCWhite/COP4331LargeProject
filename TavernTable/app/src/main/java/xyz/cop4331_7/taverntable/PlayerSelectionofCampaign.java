@@ -3,6 +3,7 @@ package xyz.cop4331_7.taverntable;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                             JSONArray characterNames = jsonResponseObject.getJSONArray("characterNames");
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
-                            JSONArray dm = jsonResponseObject.getJSONArray("DMs");
+                            JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
 
                             for(int i=0; i<characterNames.length(); i++)
                             {
@@ -56,7 +57,6 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                                 updateScroll("Campaign ID: " + campID);
                                 addButton();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -100,5 +100,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
         b1.setText("Return to Campaign Above");
         selectCamps.addView(b1);
     }
+
+
 }
 

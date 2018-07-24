@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -43,7 +44,7 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                             JSONArray characterNames = jsonResponseObject.getJSONArray("characterNames");
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
-                            JSONArray dm = jsonResponseObject.getJSONArray("DMs");
+                            JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
 
                             for(int i=0; i<characterNames.length(); i++)
                             {
@@ -83,6 +84,9 @@ public class DMSelectionofCampaign extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+        Intent intent = getIntent();
+        String user = intent.getExtras().getString("userid");
+        configurecreateCampaign(user);
     }
 
 
@@ -101,5 +105,16 @@ public class DMSelectionofCampaign extends AppCompatActivity {
         b1.setText("Return to Campaign Above");
 
         selectDMCamps.addView(b1);
+    }
+    private void configurecreateCampaign(final String id) {
+        Button selectPlayer = (Button) findViewById(R.id.createCampaign);
+        selectPlayer.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DMSelectionofCampaign.this, CreateCampaign.class);
+                intent.putExtra("userid", id );
+                startActivity(intent);
+            }
+        }));
     }
 }
