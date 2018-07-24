@@ -13,30 +13,31 @@ $username = 'root';
 $password = 'contactmanager7';
 $databaseName = 'dndApp';
 
+//Arrays to store and send the info back
+$characterNames = array();
+$campaignNames = array();
+$campaignIDs = array();
+$DMs = array();
+$tempDMs = array();
+$partySizes = array();
+$DMNames = array();
+
 // We establish a connection to the database.
 $connection = new mysqli($hostname, $username, $password, $databaseName);
 
 // If we have a connection error, we send the connection error message to returnWithError, this method will send a JSON where one of its fields indicates the connection error.
 if ($connection->connect_error) {
   returnWithError($connection->connect_error);
-} else {
+}
+
+else {
 
   // Obtain the passed in userID.
   $userID = $_POST['userID'];
 
-  // $i will be an index in our arrays so we begin at 0.
-  $i = 0;
-
-  // $commaCount keeps track of when we should put commas between values when constructing a JSON array.
-  $commaCount = 0;
-
-  // $indexCounter keeps track of which index we are at.
-  $indexCounter = 0;
-
   // We obtain the characterIDs and character names that match the passed in userID.
   $query = "SELECT characterID, name FROM Characters WHERE userID = $userID";
 
-  // We execute our query.
   $result = $connection->query($query);
 
   // If our above query doesn't execute we return an error indicating that the passed in userID was invalid.
@@ -44,85 +45,65 @@ if ($connection->connect_error) {
     returnWithError("Invalid userID");
   } else {
 
-    // We go through each row that we have retrieved.
+    // Go through Characters table
     while ($row = $result->fetch_assoc()) {
+		  // store current characterID
+		  $characterIDs = $row['characterID'];
 
-      // We retrieve the characterID from the current row we are at.
-      $characterIDs[$indexCounter] = $row['characterID'];
-
-      // We retrieve the character name from the current row we are at.
-      $characterNames[$indexCounter] = $row['name'];
-
-      // We increment $indexCounter by one to go to the next index in our arrays.
-      $indexCounter++;
-    }
-
-    // We set $indexCounter to zero since we will deal with a different set of arrays.
-    $indexCounter = 0;
-
-    // We go through all of the characterIDs we obtained.
-    for($i = 0; $i < sizeof($characterIDs); $i++) {
-
-      // We retrieve the campaignIDs from our charactersCampaign table with the same characterIDs.
-      $query = "SELECT campaignID FROM charactersCampaign WHERE characterID = $characterIDs[$i]";
-
-      // We execute our query.
-      $result = $connection->query($query);
-
-      // If our query is not executed it means we have an invalid campaignID and we return an error indicating that and exit from the program.
-      if (!$result) {
-        returnWithError("Invalid campaignID");
+		// Open another query from CharactersCampaign Table
+		$queryCampaignChar = "SELECT campaignID FROM CharactersCampaign WHERE characterID = $characterIDs";
+		$resultCampaignChar = $connection->query($queryCampaignChar);
+		// check error
+		if (!$resultCampaignChar) {
+        returnWithError("error in queryCmapChar");
         exit();
-      }
+		}
+		  // go through ChactersCampaign Table
+		  while ($rowCampaignChar = $resultCampaignChar->fetch_assoc()) {
+			// store current Campaign ID as temp
+			$temp = $rowCampaignChar['campaignID'];
 
-      // We go through each row we have retrieved.
-      while ($row = $result->fetch_assoc()) {
+					// open Campaign Table
+					$queryCampaign = "SELECT name, userID, partySize FROM Campaign WHERE campaignID = $temp";
+					$resultCampaign = $connection->query($queryCampaign);
+					// check error
+					if (!$result) {
+					returnWithError("Invalid campaignID");
+					exit();
+					}
 
-        // We retrieve the campaignID from the row we just retrieved and assign it to $campaignIDs.
-        $campaignIDs[$indexCounter] = $row['campaignID'];
-
-        // We increment $indexCounter by one to get to the next index.
-        $indexCounter++;
-      }
-
+					// go through the Campaign Table
+					while($rowCampaign = $resultCampaign->fetch_assoc())
+					{
+						//check if the character is a DM by comparing userID and the userID in the Campaign Table
+						// if the userID does not match , that means the character is participating in the campaign as a player
+						if($rowCampaign['userID'] != $userID)
+						{
+						// push the values
+						array_push($campaignIDs, $rowCampaignChar['campaignID']);
+						array_push($campaignNames, $rowCampaign['name']);
+						array_push($DMs, $rowCampaign['userID']);
+						array_push($partySizes, $rowCampaign['partySize']);
+						array_push($characterNames, $row['name']);
+						}
+					}
+		  }
     }
 
-    // We set $indexCounter to zero since we will deal with a different set of arrays.
-    $indexCounter = 0;
+    // find DM names
+	for($i = 0; $i < sizeof($DMs); $i++) {
 
-    // We go through each of our campaign IDs.
-    for($i = 0; $i < sizeof($campaignIDs); $i++) {
+          $query = "SELECT username FROM Users WHERE userID = $DMs[$i]";
 
-      // We retrieve the name of the campaign, userID, and partySize from our campaign table with the matching campaignID.
-      $query = "SELECT name, userID, partySize FROM campaign WHERE campaignID = $campaignIDs[$i]";
+          $result = $connection->query($query);
 
-      // We execute our query.
-      $result = $connection->query($query);
+          while ($row = $result->fetch_assoc()) {
+            array_push($DMNames, $row['username']);
+          }
+	}
 
-      // If our query wasn't executed it means that we have an invalid campaignID and we return an error indicating that and exit from the program.
-      if (!$result) {
-        returnWithError("Invalid campaignID");
-        exit();
-      }
 
-      // We go through each row we have obtained.
-      while ($row = $result->fetch_assoc()) {
-
-        // We obtain the campaign name and assign it to $campaignNames
-        $campaignNames[$indexCounter] = $row['name'];
-
-        // We obtain the DM ID and assign it to $DMs.
-        $DMs[$indexCounter] = $row['userID'];
-
-        // We obtain the party size and assign it to $partySizes.
-        $partySizes[$indexCounter]= $row['partySize'];
-
-        // We increment $indexCounter by one to get to the next index in our arrays.
-        $indexCounter++;
-      }
-    }
-
-    // We go through each of character names.
+        // We go through each of character names.
       for($i = 0; $i < sizeof($characterNames); $i++) {
 
         // If we have more than one character name we want to put an comma between them each time another character name appears.
@@ -177,7 +158,7 @@ if ($connection->connect_error) {
       $commaCount = 0;
 
       // We go through each of our DMs.
-      for($i = 0; $i < sizeof($DMs); $i++) {
+      for($i = 0; $i < sizeof($DMNames); $i++) {
 
         // If we have more than one DM we want to put an comma between them each time another DM appears.
           if ($commaCount > 0) {
@@ -185,7 +166,7 @@ if ($connection->connect_error) {
           }
 
           // We assign DM to $DMsJSON.
-          $DMsJSON .= '' . $DMs[$i] . '';
+          $DMsJSON .= '"' . $DMNames[$i] . '"';
 
           // We increment $commaCount by one each time we come across another campaign ID.
           $commaCount++;
@@ -227,14 +208,14 @@ function sendResultInfoAsJson($obj) {
 // If we have an error we return a JSON we return the error we recieved in this JSON.
 // The returnValue variable is passed to the sendResultInfoAsJson method afterwards.
 function returnWithError($error) {
-  $returnValue = '{"characterNames": "", "campaignNames": "", "campaignIDs":, "", "DMs": "", "partySizes": "", "error": "' . $error . '"}';
+  $returnValue = '{"characterNames": "", "campaignNames": "", "campaignIDs": "", "DMs": "", "partySizes": "", "error": "' . $error . '"}';
   sendResultInfoAsJson($returnValue);
 }
 
 // We send back an array of character names, campaign names, campaign IDs, DMs, and party sizes.
 // The returnValue variable is passed to the sendResultInfoAsJson method afterwards.
-function returnWithInfo($characterNames, $campaignNames, $campaignIDs, $DMs, $partySizes) {
-  $returnValue = '{"characterNames": [' . $characterNames . '], "campaignNames": [' . $campaignNames . '], "campaignIDs": [' . $campaignIDs . '], "DMs": [' . $DMs . '], "partySizes": [' . $partySizes . '], "error": ""}';
+function returnWithInfo($characterNames, $campaignNames, $campaignIDs, $DMNames, $partySizes) {
+  $returnValue = '{"characterNames": [' . $characterNames . '], "campaignNames": [' . $campaignNames . '], "campaignIDs": [' . $campaignIDs . '], "DMNames": [' . $DMNames . '], "partySizes": [' . $partySizes . '], "error": ""}';
   sendResultInfoAsJson($returnValue);
 }
 
