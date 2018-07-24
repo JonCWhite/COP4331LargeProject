@@ -40,10 +40,14 @@ public class MainActivity extends AppCompatActivity {
         Button returnUserButton = (Button) findViewById(R.id.notesButton);
         // Add an onClickListener to the button and configure it to start the sign in activity when
         // pressed.
+
+        final Intent intent = new Intent(MainActivity.this, CharacterNotes.class);
+        intent.putExtra("characterID",23);
+
         returnUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, CharacterNotes.class));
+                startActivity(intent);
             }
         });
     }
