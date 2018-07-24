@@ -19,7 +19,7 @@
     <string name="player_text">Player</string>
     <string name="dungeon_master_text">Dungeon Master</string>
     <string name="i_am_a_text">I am a...</string>
-    <string name="submit_text">Sumbit</string>
+    <string name="submit_text">Submit</string>
     <string name="add_a_new_friend_text">Add a new friend</string>
     <string name="placeholder_text">placeholder</string>
     <string name="stats_button_text">stats button</string>
@@ -65,4 +65,5 @@
     <string name="abilities_text">Abilities</string>
     <string name="weapons_text">Weapons</string>
     <string name="spells_text">Spells</string>
+    <string name="didNotSave">Data wasn\'t saved. Please check internet connection.</string>
 </resources>
