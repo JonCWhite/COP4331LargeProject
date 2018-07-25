@@ -81,7 +81,11 @@ public class PlayerSessionActivity extends AppCompatActivity {
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
 
                 final Intent intent = new Intent(PlayerSessionActivity.this, CharacterNotes.class);
-                intent.putExtra("characterID",characterID);
+
+                //notes activity accepts integers, need to convert
+                int cID = Integer.parseInt(characterID);
+
+                intent.putExtra("characterID", cID);
                 startActivity(intent);
 
             }
