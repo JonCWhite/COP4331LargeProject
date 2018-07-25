@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("campaign_name", "4");
                 intent.putExtra("user_name", "MissVanjie");
                 intent.putExtra("characterID", "2");
+                intent.putExtra("userID", "121");
                 startActivity(intent);
                 }
         });
@@ -77,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), DMSessionActivity.class);
                 intent.putExtra("campaign_name", "test_campaign");
                 intent.putExtra("user_name", "test_user");
+                intent.putExtra("campaign_name", "4");
+                intent.putExtra("user_name", "MissVanjie");
+                intent.putExtra("characterID", "2");
+                intent.putExtra("userID", "121");
                 startActivity(intent);
             }
         });

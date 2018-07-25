@@ -35,20 +35,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         try {
-            holder.tvBookTitle.setText(mData.getJSONObject(position).getString("name"));
+            holder.tvCharacterName.setText(mData.getJSONObject(position).getString("name"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        holder.ivBookThumbnail.setImageResource(R.drawable.ic_charactersheet);
+        holder.ivSheetThumbnail.setImageResource(R.drawable.ic_charactersheet);
 
         // Set click listener
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CharacterSheetActivity.class);
+                System.out.println(mData.toString());
                 try {
                     intent.putExtra("name", mData.getJSONObject(position).getString("name"));
                     intent.putExtra("characterID", mData.getJSONObject(position).getString("characterID"));
+                    intent.putExtra("userID", mData.getJSONObject(position).getString("userID"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -63,15 +66,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvBookTitle;
-        ImageView ivBookThumbnail;
+        TextView tvCharacterName;
+        ImageView ivSheetThumbnail;
         CardView cardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tvBookTitle = (TextView) itemView.findViewById(R.id.book_title_id);
-            ivBookThumbnail = (ImageView) itemView.findViewById(R.id.book_image_id);
+            tvCharacterName = (TextView) itemView.findViewById(R.id.book_title_id);
+            ivSheetThumbnail = (ImageView) itemView.findViewById(R.id.book_image_id);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
         }
     }

@@ -45,7 +45,7 @@
         <activity android:name=".SheetStatsActivity" />
         <activity android:name=".SheetHealthActivity" />
         <activity android:name=".SheetCharacterBackgroundActivity" />
-        <activity android:name=".sheetPersonalityActivity" />
+        <activity android:name=".SheetPersonalityActivity" />
         <activity android:name=".SheetFeaturesActivity" />
         <activity android:name=".SheetAbilitiesActivity" />
         <activity android:name=".SheetInventoryActivity" />

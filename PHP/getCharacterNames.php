@@ -33,7 +33,7 @@ if ($connection->connect_error) {
 		// We store the current characterID
 		$temp = $rowCharacterID['characterID'];
 		// We return the characterName that have matches characterID in the Characters table.
-		$queryCharacterName = "SELECT name, characterID FROM Characters WHERE characterID = $temp";
+		$queryCharacterName = "SELECT name, characterID, userID FROM Characters WHERE characterID = $temp";
 		// We perform our query.
 		$resultCharacterName = $connection->query($queryCharacterName);
 		// If our query wasn't executed it means that we have an invalid characterID and we return an error indicating that and exit from the program.

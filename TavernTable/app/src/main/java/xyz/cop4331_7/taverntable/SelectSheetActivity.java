@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class SelectSheetActivity extends AppCompatActivity {
     RequestQueue queue;
-    private String campaignID, characterID;
+    private String campaignID, userID;
     static final String getCharacterNamesURL = "http://cop4331-7.xyz/test/getCharacterNames.php";
 
     @Override
@@ -32,7 +32,7 @@ public class SelectSheetActivity extends AppCompatActivity {
 
         // Initialize class variables
         campaignID = getIntent().getExtras().get("campaignID").toString();
-        characterID = getIntent().getExtras().get("characterID").toString();
+        userID = getIntent().getExtras().get("userID").toString();
         queue = Volley.newRequestQueue(this);
 
         getCharacterNames(SelectSheetActivity.this, queue);
@@ -51,6 +51,10 @@ public class SelectSheetActivity extends AppCompatActivity {
                             // To access a string in the JSONArray, use the following syntax:
                             // mData.getJSONObject(position).getString("name")
                             JSONArray jsonResponse = new JSONArray(response);
+                            for (int i = 0; i < jsonResponse.length(); i++)
+                            {
+                                jsonResponse.getJSONObject(i).put("userID", userID);
+                            }
 
                             RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
                             RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(context, jsonResponse);
@@ -97,7 +101,6 @@ public class SelectSheetActivity extends AppCompatActivity {
 
                 // POST params
                 params.put("campaignID", campaignID);
-                params.put("characterID", characterID);
 
                 return params;
             }

@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#364e59"
-    tools:context=".sheetPersonalityActivity">
+    tools:context=".SheetPersonalityActivity">
 
     <!-- Personality traits field. -->
     <LinearLayout
-        android:id="@+id/llHealthMiddle"
+        android:id="@+id/llPersonality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
