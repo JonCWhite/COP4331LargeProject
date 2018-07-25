@@ -50,6 +50,8 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
                             JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
+                            JSONArray partySize = jsonResponseObject.getJSONArray("partySizes");
+                            JSONArray partyKey = jsonResponseObject.getJSONArray("partyKeys");
 
                             for(int i=0; i<characterNames.length(); i++)
                             {
@@ -61,6 +63,10 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                                 updateScroll("Campaign Name: " + campName);
                                 String campID = campaignIDs.getString(i);
                                 updateScroll("Campaign ID: " + campID);
+                                String partyS = partySize.getString(i);
+                                updateScroll("Party Size: " + partyS);
+                                String partyK = partyKey.getString(i);
+                                updateScroll("Party Key: " + partyK);
                                 addButton();
                             }
 

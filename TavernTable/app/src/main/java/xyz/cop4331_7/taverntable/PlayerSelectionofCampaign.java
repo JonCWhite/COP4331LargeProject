@@ -47,6 +47,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
                             JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
+                            JSONArray partySize = jsonResponseObject.getJSONArray("partySizes");
 
                             for(int i=0; i<characterNames.length(); i++)
                             {
@@ -58,6 +59,8 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                                 updateScroll("Campaign Name: " + campName);
                                 String campID = campaignIDs.getString(i);
                                 updateScroll("Campaign ID: " + campID);
+                                String partyS = partySize.getString(i);
+                                updateScroll("Party Size: " + partyS);
                                 addButton();
                             }
                         } catch (JSONException e) {

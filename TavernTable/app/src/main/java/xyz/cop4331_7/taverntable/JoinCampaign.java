@@ -74,7 +74,20 @@ public class JoinCampaign extends Activity {
                                                 .create().show();
 
                                     }
-
+                                    else if(error.equals("You are a DM in this campaign"))
+                                    {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(JoinCampaign.this);
+                                        builder.setMessage("You are a DM in this campaign.")
+                                                .setNegativeButton("Try Again", null)
+                                                .create().show();
+                                    }
+                                    else if(error.equals("You already joined this campaign"))
+                                    {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(JoinCampaign.this);
+                                        builder.setMessage("You already joined this campaign.")
+                                                .setNegativeButton("Try Again", null)
+                                                .create().show();
+                                    }
                                     else
                                     {
 
@@ -106,7 +119,7 @@ public class JoinCampaign extends Activity {
                         Map<String, String> params = new HashMap<>();
 
                         // POST params
-                        //params.put("userID", user);
+                        params.put("userID", user);
                         params.put("partyKey", pKey);
 
                         return params;
