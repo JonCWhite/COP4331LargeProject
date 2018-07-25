@@ -52,6 +52,15 @@
         <activity android:name=".SheetAbilitiesActivity" />
         <activity android:name=".SheetInventoryActivity" />
         <activity android:name=".SheetOtherActivity"/>
+        <activity
+            android:name=".CharacterNotes"
+            android:parentActivityName=".UserAreaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
+        </activity>
+
     </application>
 
 </manifest>

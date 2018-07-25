@@ -73,12 +73,18 @@ public class PlayerSessionActivity extends AppCompatActivity {
         ImageButton bNotes = (ImageButton) findViewById(R.id.bNotes);
         // Add an onClickListener to the button and configure it to start the sign in activity when
         // pressed.
+
         bNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
+
+                final Intent intent = new Intent(PlayerSessionActivity.this, CharacterNotes.class);
+                intent.putExtra("characterID",characterID);
+                startActivity(intent);
+
             }
-        });
+        }); //end setOnClickListener
     }
 }
