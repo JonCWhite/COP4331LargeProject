@@ -40,7 +40,7 @@ public class setCharacterRolls extends AppCompatActivity
     private ArrayList<String> rollsArray = new ArrayList<String>();
 
     // URL to send request
-    static final String SEND_CHARACTER_URL = "http://cop4331-7.xyz/system/initializeCharacter.php";
+    static final String SEND_CHARACTER_URL = "http://cop4331-7.xyz/initializeCharacter.php";
 
     private String userID; // Holds userID
 
