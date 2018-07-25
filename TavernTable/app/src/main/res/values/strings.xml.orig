@@ -16,7 +16,6 @@
     <string name="character_sheet_button_desc">Character sheet button</string>
     <string name="notes_button_desc">Notes button</string>
     <string name="test_dm_session_string">test dm session</string>
-<<<<<<< HEAD
     <string name="player_text">Player</string>
     <string name="dungeon_master_text">Dungeon Master</string>
     <string name="i_am_a_text">I am a...</string>
@@ -66,10 +65,15 @@
     <string name="abilities_text">Abilities</string>
     <string name="weapons_text">Weapons</string>
     <string name="spells_text">Spells</string>
+<<<<<<< Updated upstream
     <string name="didNotSave">Data wasn\'t saved. Please check internet connection.</string>
-<<<<<<< HEAD
 =======
->>>>>>> master
-=======
->>>>>>> origin/characterSheet
+>>>>>>> Stashed changes
+    <string name="gold_pieces_text">Gold Pieces</string>
+    <string name="silver_pieces_text">Silver Pieces</string>
+    <string name="copper_pieces_text">Copper Pieces</string>
+    <string name="spell_casting_ability_text">Spell Casting Ability</string>
+    <string name="spell_save_dc_text">Spell Save DC</string>
+    <string name="spell_attack_bonus_text">Spell Attack Bonus</string>
+    <string name="equipment_text">Equipment</string>
 </resources>

@@ -48,9 +48,12 @@
         <activity android:name=".sheetPersonalityActivity" />
         <activity android:name=".SheetFeaturesActivity" />
         <activity android:name=".SheetAbilitiesActivity" />
+<<<<<<< HEAD
         <activity android:name=".SheetInventoryActivity"></activity>
 =======
 >>>>>>> master
+=======
+>>>>>>> origin/characterSheet
     </application>
 
 </manifest>

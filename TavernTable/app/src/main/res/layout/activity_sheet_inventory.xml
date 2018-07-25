@@ -3,7 +3,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=""
+    android:background="#ff9900"
     tools:context=".SheetInventoryActivity">
+
+    <!-- Light gray box to hold character data inputs.  -->
+    <LinearLayout
+        android:id="@+id/llHealthMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:background="#AAAAAA">
+
+        <!-- A layout to hold your money. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Gold pieces -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gold_pieces_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etGP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <!-- Silver pieces -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/silver_pieces_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etSP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+            <!-- Copper pieces -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copper_pieces_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etCP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Character equipment field. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/equipment_text"
+                android:textColor="#FFFFFF"
+                android:background="#555555"/>
+
+            <EditText
+                android:id="@+id/etEquipment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/placeholder_text"
+                android:inputType="text"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- Submit button to send changes to the server -->
+        <Button
+            android:id="@+id/bSheetEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/submit_text"/>
+
+    </LinearLayout>
 
 </ScrollView>
