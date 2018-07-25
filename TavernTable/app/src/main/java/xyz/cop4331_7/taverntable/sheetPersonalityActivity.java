@@ -26,8 +26,8 @@ public class sheetPersonalityActivity extends AppCompatActivity {
 
     Intent intent;
     int characterID;
-    static final String urlGet = "http://cop4331-7.xyz/GET/getFeaturesAndTraits.php";
-    static final String urlSet = "http://cop4331-7.xyz/SET/setFeaturesAndTraits.php";
+    static final String urlGet = "http://cop4331-7.xyz/getFlavorBox.php";
+    static final String urlSet = "http://cop4331-7.xyz/setFlavorBox.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,16 @@ public class sheetPersonalityActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String data = content.getText().toString();
+                String personData = personality.getText().toString();
+                String idealsData = ideals.getText().toString();
+                String bondsData = bonds.getText().toString();
+                String flawsData = flaws.getText().toString();
 
-                setPersonality(characterID, data);
+                setTraits(characterID, personData, idealsData, bondsData, flawsData);
             }
         });
 
-    }//End OnCreate
+    }//End OnCreate()
 
     private void getTraits(final int characterID){
 
@@ -76,15 +79,19 @@ public class sheetPersonalityActivity extends AppCompatActivity {
                         {
                             JSONArray jsonResponse = new JSONArray(response);
 
-
-
-                            String feat = jsonResponse.getString("personality"),
-                                    error = jsonResponse.getString("error");
+                            String personalityText = jsonResponse.getJSONObject(0).getString("personality"),
+                                    idealsText = jsonResponse.getJSONObject(0).getString("ideals"),
+                                    bondsText = jsonResponse.getJSONObject(0).getString("bonds"),
+                                    flawsText = jsonResponse.getJSONObject(0).getString("flaws"),
+                                    error = jsonResponse.getJSONObject(0).getString("error");
 
                             if(error.equals("")){
 
                                 //success
-                                personality.setText(feat);
+                                personality.setText(personalityText);
+                                ideals.setText(idealsText);
+                                bonds.setText(bondsText);
+                                flaws.setText(flawsText);
                             }
 
                             else{
@@ -123,41 +130,68 @@ public class sheetPersonalityActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(getApplicationContext()).add(postRequest);
 
-    }
+    }//end getTraits()
 
-    private void getIdeals(int characterID){
+    private void setTraits(final int characterID, final String personData, final String idealsData, final String bondsData, final String flawsData){
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, urlGet,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try
+                        {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            String error = jsonResponse.getString("error");
+
+                            if(error.equals("")){
+
+                                //success
+                            }
+
+                            else{
+
+                                //fail
+                            }
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        error.printStackTrace();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                // POST params
+                params.put("characterID", String.valueOf(characterID));
+                params.put("personality", personData);
+                params.put("ideals", idealsData);
+                params.put("bonds", bondsData);
+                params.put("flaws", flawsData);
+
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(getApplicationContext()).add(postRequest);
 
 
-    }
-
-    private void getBonds(int characterID){
+    }//end setTraits()
 
 
-    }
-
-    private void getFlaws(int characterID){
-
-
-    }
-
-    private void setTraits(int characterID){
-
-
-    }
-
-    private void setIdeals(int characterID){
-
-
-    }
-
-    private void setBonds(int characterID){
-
-
-    }
-
-    private void setFlaws(int characterID){
-
-
-    }
-
-}
+}//end class
