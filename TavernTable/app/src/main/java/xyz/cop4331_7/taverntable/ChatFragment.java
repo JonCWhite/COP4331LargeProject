@@ -43,8 +43,8 @@ public class ChatFragment extends Fragment {
             bSend = (Button) view.findViewById(R.id.bSend);
             etEntry = (EditText) view.findViewById(R.id.etMessageEntry);
             llMessages = (LinearLayout) view.findViewById(R.id.llMessages);
-            user_name = getArguments().getString("user_name");
-            campaign_name = getArguments().getString("campaign_name");
+            user_name = getArguments().getString("userid");
+            campaign_name = getArguments().getString("campaignid");
 
             roomRoot = FirebaseDatabase.getInstance().getReference().child(campaign_name);
 

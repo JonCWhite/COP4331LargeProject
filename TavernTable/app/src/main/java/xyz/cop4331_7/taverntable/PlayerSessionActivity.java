@@ -3,6 +3,7 @@ package xyz.cop4331_7.taverntable;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,13 +19,14 @@ public class PlayerSessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player_session);
 
         // Initialize user and campaign names.
-        user_name = getIntent().getExtras().get("userid").toString();
-        campaign_name = getIntent().getExtras().get("campaignid").toString();
+        Intent intent = getIntent();
+        user_name = intent.getStringExtra("userid");
+        campaign_name =  intent.getStringExtra("campaignid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name", user_name);
-        bundle.putString("campaign_name", campaign_name);
+        bundle.putString("userid", user_name);
+        bundle.putString("campaignid", campaign_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -46,6 +48,10 @@ public class PlayerSessionActivity extends AppCompatActivity {
         bBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PlayerSessionActivity.this);
+                builder.setMessage("Please enter Campaign Name"+ user_name + "campaignID: "+ campaign_name)
+                        .setNegativeButton("Try Again", null)
+                        .create().show();
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
