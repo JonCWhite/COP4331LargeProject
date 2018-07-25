@@ -27,11 +27,16 @@ import java.util.Map;
 public class DMSelectionofCampaign extends AppCompatActivity {
     RequestQueue requestQueue;
     String url = "http://cop4331-7.xyz/system/selectDMCampaigns.php";
+    Button selectPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dmselectionof_campaign);
+
+        selectPlayer = (Button) findViewById(R.id.createCampaignButton);
+        Intent getintent = getIntent();
+        final String usr = getintent.getExtras().getString("userid");
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -76,17 +81,13 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
 
                 // POST parameters
-                Intent intent = getIntent();
-                String user = intent.getExtras().getString("userid");
-                params.put("userID", user);
+                params.put("userID", usr);
 
                 return params;
             }
         };
         Volley.newRequestQueue(getApplicationContext()).add(postRequest);
-        Intent intent = getIntent();
-        String user = intent.getExtras().getString("userid");
-        configurecreateCampaign(user);
+        configurecreateCampaign(usr);
     }
 
 
@@ -107,13 +108,12 @@ public class DMSelectionofCampaign extends AppCompatActivity {
         selectDMCamps.addView(b1);
     }
     private void configurecreateCampaign(final String id) {
-        Button selectPlayer = (Button) findViewById(R.id.createCampaign);
         selectPlayer.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DMSelectionofCampaign.this, CreateCampaign.class);
-                intent.putExtra("userid", id );
-                startActivity(intent);
+                Intent createintent = new Intent(DMSelectionofCampaign.this, CreateCampaign.class);
+                createintent.putExtra("userid", id );
+                startActivity(createintent);
             }
         }));
     }

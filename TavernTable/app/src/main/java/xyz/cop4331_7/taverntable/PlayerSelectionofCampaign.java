@@ -33,6 +33,9 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
         setContentView(R.layout.activity_player_selectionof_campaign);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+        Intent getintent = getIntent();
+        final String user = getintent.getExtras().getString("userid");
+
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -82,6 +85,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
             }
         };
         Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+        configurejoinCampaign(user);
     }
 
 
@@ -100,7 +104,17 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
         b1.setText("Return to Campaign Above");
         selectCamps.addView(b1);
     }
-
+    private void configurejoinCampaign(final String id) {
+        Button joinPlayer = findViewById(R.id.createPlayerCampaign);
+        joinPlayer.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createintent = new Intent(PlayerSelectionofCampaign.this, JoinCampaign.class);
+                createintent.putExtra("userid", id );
+                startActivity(createintent);
+            }
+        }));
+    }
 
 }
 

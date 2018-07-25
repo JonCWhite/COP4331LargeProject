@@ -18,8 +18,8 @@ public class PlayerSessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player_session);
 
         // Initialize user and campaign names.
-        user_name = getIntent().getExtras().get("user_name").toString();
-        campaign_name = getIntent().getExtras().get("campaign_name").toString();
+        user_name = getIntent().getExtras().get("userid").toString();
+        campaign_name = getIntent().getExtras().get("campaignid").toString();
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();

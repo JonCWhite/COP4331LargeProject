@@ -3,11 +3,15 @@ package xyz.cop4331_7.taverntable;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class DMSessionActivity extends AppCompatActivity {
     private String user_name, campaign_name;
@@ -18,8 +22,9 @@ public class DMSessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dmsession);
 
         // Initialize user and campaign names.
-        user_name = getIntent().getExtras().get("user_name").toString();
-        campaign_name = getIntent().getExtras().get("campaign_name").toString();
+        Intent intent = getIntent();
+        user_name = intent.getStringExtra("userid");
+        campaign_name =  intent.getStringExtra("campaignid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
@@ -47,6 +52,11 @@ public class DMSessionActivity extends AppCompatActivity {
         bBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DMSessionActivity.this);
+                builder.setMessage("Please enter Campaign Name"+ user_name + "campaignID: "+ campaign_name)
+                        .setNegativeButton("Try Again", null)
+                        .create().show();
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
@@ -91,4 +101,5 @@ public class DMSessionActivity extends AppCompatActivity {
             }
         });
     }
+
 }
