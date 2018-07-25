@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -17,15 +20,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 
-public class sheetPersonalityActivity extends AppCompatActivity {
-
-    EditText personality, ideals, bonds, flaws;
-
+public class SheetPersonalityActivity extends AppCompatActivity {
+    Button button;
+    EditText etTraits, etIdeals, etBonds, etFlaws;
     Intent intent;
-    int characterID;
+    RequestQueue queue;
+    String characterID, userID;
     static final String urlGet = "http://cop4331-7.xyz/getFlavorBox.php";
     static final String urlSet = "http://cop4331-7.xyz/setFlavorBox.php";
 
@@ -34,40 +35,38 @@ public class sheetPersonalityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet_personality);
 
-        personality = (EditText) findViewById(R.id.etTraits);
-        ideals = (EditText) findViewById(R.id.etIdeals);
-        bonds = (EditText) findViewById(R.id.etBonds);
-        flaws = (EditText) findViewById(R.id.etFlaws);
+        // Initialize class variables from UI elements
+        etTraits = (EditText) findViewById(R.id.etTraits);
+        etIdeals = (EditText) findViewById(R.id.etIdeals);
+        etBonds = (EditText) findViewById(R.id.etBonds);
+        etFlaws = (EditText) findViewById(R.id.etFlaws);
+        button = (Button) findViewById(R.id.bSheetPersonality);
+        queue = Volley.newRequestQueue(getApplicationContext());
+    static final String urlSet = "http://cop4331-7.xyz/setFlavorBox.php";
 
-        Button button = (Button) findViewById(R.id.bSheetFeatures);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sheet_personality);
 
-        //get the character ID
+        // Initialize class variables from UI elements
+        etTraits = (EditText) findViewById(R.id.etTraits);
+        etIdeals = (EditText) findViewById(R.id.etIdeals);
+        etBonds = (EditText) findViewById(R.id.etBonds);
+        etFlaws = (EditText) findViewById(R.id.etFlaws);
+        button = (Button) findViewById(R.id.bSheetPersonality);
+        queue = Volley.newRequestQueue(getApplicationContext());
+
+        //get the character ID from the intent
         intent = getIntent();
-        characterID = intent.getIntExtra("characterID",-1);
+        characterID = intent.getExtras().get("characterID").toString();
+        userID = intent.getExtras().get("userID").toString();
 
-        //if there was a character ID, go get its notes
-        if(characterID > -1) {
-            getTraits(characterID);
+        getPersonality(characterID, queue);
+    }
 
-
-
-        }
-        //when button gets pressed, go save the data
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                String personData = personality.getText().toString();
-                String idealsData = ideals.getText().toString();
-                String bondsData = bonds.getText().toString();
-                String flawsData = flaws.getText().toString();
-
-                setTraits(characterID, personData, idealsData, bondsData, flawsData);
-            }
-        });
-
-    }//End OnCreate()
-
-    private void getTraits(final int characterID){
+    // Loads data from the server into character background fields
+    private void getPersonality(final String characterID, final RequestQueue queue){
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, urlGet,
                 new Response.Listener<String>()
@@ -77,28 +76,46 @@ public class sheetPersonalityActivity extends AppCompatActivity {
                     {
                         try
                         {
-                            JSONArray jsonResponse = new JSONArray(response);
+                            // Read server response into strings
+                            final JSONArray jsonResponse = new JSONArray(response);
+                            String personality = jsonResponse.getJSONObject(0).getString("personality"),
+                                    ideals = jsonResponse.getJSONObject(0).getString("ideals"),
+                                    bonds = jsonResponse.getJSONObject(0).getString("bonds"),
+                                    flaws = jsonResponse.getJSONObject(0).getString("flaws"),
+                                    responseUserID = jsonResponse.getJSONObject(0).getString("userID");
 
-                            String personalityText = jsonResponse.getJSONObject(0).getString("personality"),
-                                    idealsText = jsonResponse.getJSONObject(0).getString("ideals"),
-                                    bondsText = jsonResponse.getJSONObject(0).getString("bonds"),
-                                    flawsText = jsonResponse.getJSONObject(0).getString("flaws"),
-                                    error = jsonResponse.getJSONObject(0).getString("error");
-
-                            if(error.equals("")){
+                            // If the error JSON response doesn't have an error field, then we know
+                            // our data was successfully retrieved.
+                            if(!jsonResponse.getJSONObject(0).has("error")){
 
                                 //success
-                                personality.setText(personalityText);
-                                ideals.setText(idealsText);
-                                bonds.setText(bondsText);
-                                flaws.setText(flawsText);
+                                etTraits.setText(personality);
+                                etIdeals.setText(ideals);
+                                etBonds.setText(bonds);
+                                etFlaws.setText(flaws);
                             }
-
                             else{
-
                                 //fail
                             }
 
+
+                            if (responseUserID.equals(userID)) {
+                                // When the button gets pressed, go save the data. We configure the
+                                // button here instead of in OnCreate() to ensure the user's data isn't
+                                // accidentally overwritten with placeholder text in the event of a
+                                // delayed load.
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    public void onClick(View v) {
+                                        setPersonality(characterID, queue);
+                                    }
+                                });
+                            }
+                            // Otherwise, this user should not be allowed to edit this character
+                            // sheet so we remove the submite button.
+                            else {
+                                LinearLayout parent = (LinearLayout) findViewById(R.id.llPersonality);
+                                parent.removeView(button);
+                            }
                         }
                         catch (JSONException e)
                         {
@@ -128,13 +145,14 @@ public class sheetPersonalityActivity extends AppCompatActivity {
             }
         };
 
-        Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+        queue.add(postRequest);
 
-    }//end getTraits()
+    }//end getFeatures
 
-    private void setTraits(final int characterID, final String personData, final String idealsData, final String bondsData, final String flawsData){
+    // Applies any changes made to editable parts of the form to the server.
+    private void setPersonality(final String characterID, final RequestQueue queue){
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, urlGet,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, urlSet,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -142,10 +160,12 @@ public class sheetPersonalityActivity extends AppCompatActivity {
                     {
                         try
                         {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            String error = jsonResponse.getString("error");
+                            if (!response.equals("")) {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                String error = jsonResponse.getString("error");
+                            }
 
-                            if(error.equals("")){
+                            /*if(error.equals("")){
 
                                 //success
                             }
@@ -153,7 +173,7 @@ public class sheetPersonalityActivity extends AppCompatActivity {
                             else{
 
                                 //fail
-                            }
+                            }*/
 
                         }
                         catch (JSONException e)
@@ -176,22 +196,17 @@ public class sheetPersonalityActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String> params = new HashMap<>();
-
                 // POST params
-                params.put("characterID", String.valueOf(characterID));
-                params.put("personality", personData);
-                params.put("ideals", idealsData);
-                params.put("bonds", bondsData);
-                params.put("flaws", flawsData);
+                params.put("characterID", characterID);
+                params.put("personality", etTraits.getText().toString());
+                params.put("ideals", etIdeals.getText().toString());
+                params.put("bonds", etBonds.getText().toString());
+                params.put("flaws", etFlaws.getText().toString());
 
                 return params;
             }
         };
 
-        Volley.newRequestQueue(getApplicationContext()).add(postRequest);
-
-
-    }//end setTraits()
-
-
-}//end class
+        queue.add(postRequest);
+    } // end setPersonality
+}

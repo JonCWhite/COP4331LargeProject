@@ -8,7 +8,7 @@
 
     <!-- Light gray box to hold character data inputs.  -->
     <LinearLayout
-        android:id="@+id/llHealthMiddle"
+        android:id="@+id/llInventory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

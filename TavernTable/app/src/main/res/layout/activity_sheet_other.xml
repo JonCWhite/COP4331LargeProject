@@ -9,7 +9,7 @@
 
     <!-- Light gray box to hold character data inputs.  -->
     <LinearLayout
-        android:id="@+id/llHealthMiddle"
+        android:id="@+id/llOther"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -65,7 +65,7 @@
 
         <!-- Submit button to send changes to the server -->
         <Button
-            android:id="@+id/bSheetEquipment"
+            android:id="@+id/bSheetOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"

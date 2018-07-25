@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#009100">
     <RelativeLayout
+        android:id="@+id/rlStats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -20,7 +21,7 @@
             android:columnCount="3"
             android:rowCount="3"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:layout_centerInParent="true">
 
             <LinearLayout
@@ -42,6 +43,7 @@
                     android:background="#555555"/>
 
                 <EditText
+                    android:id="@+id/etStr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_text"
@@ -68,6 +70,7 @@
                     android:background="#555555"/>
 
                 <EditText
+                    android:id="@+id/etDex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_text"
@@ -94,6 +97,7 @@
                     android:background="#555555"/>
 
                 <EditText
+                    android:id="@+id/etCon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_text"
@@ -120,6 +124,7 @@
                     android:background="#555555"/>
 
                 <EditText
+                    android:id="@+id/etInt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_text"
@@ -146,6 +151,7 @@
                     android:background="#555555"/>
 
                 <EditText
+                    android:id="@+id/etWis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/placeholder_text"
@@ -172,6 +178,34 @@
                 android:background="#555555"/>
 
             <EditText
+                android:id="@+id/etCha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/placeholder_text"
+                android:inputType="text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llInspiration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inspiration_text"
+                android:textColor="#FFFFFF"
+                android:background="#555555"/>
+
+            <EditText
+                android:id="@+id/etInspiration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/placeholder_text"
@@ -198,6 +232,34 @@
                 android:background="#555555"/>
 
             <EditText
+                android:id="@+id/etProBono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/placeholder_text"
+                android:inputType="text"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llpassiveWisdom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/passive_wisdom_text"
+                android:textColor="#FFFFFF"
+                android:background="#555555"/>
+
+            <EditText
+                android:id="@+id/etPassiveWisdom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/placeholder_text"
@@ -225,6 +287,7 @@
                 android:background="#555555" />
 
             <EditText
+                android:id="@+id/etSavingThrows"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -250,6 +313,7 @@
                 android:background="#555555" />
 
             <EditText
+                android:id="@+id/etProficiencies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -257,30 +321,17 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/bSheetStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            android:orientation="vertical"
             android:layout_below="@id/llPro"
-            android:background="#FFFFFF">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/item_proficiences_text"
-                android:textColor="#FFFFFF"
-                android:background="#555555" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/proficiencies_hint_text"/>
-
-        </LinearLayout>
+            android:text="@string/submit_text"/>
 
     </RelativeLayout>
 

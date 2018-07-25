@@ -75,4 +75,6 @@
     <string name="equipment_text">Equipment</string>
     <string name="languages">Languages</string>
     <string name="item_proficiencies_text">Item Proficiencies</string>
+    <string name="passive_wisdom_text">Passive Wisdom</string>
+    <string name="inspiration_text">Inspiration</string>
 </resources>
