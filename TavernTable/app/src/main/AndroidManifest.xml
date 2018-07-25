@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +20,7 @@
                 <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -28,11 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".PlayerSessionActivity" />
         <activity android:name=".DMSessionActivity" />
-<<<<<<< HEAD
         <activity android:name=".SelectSheetActivity" />
         <activity android:name=".StandIn_RegisterActivity" />
         <activity android:name=".StandIn_SignInActivity" />
@@ -48,12 +50,8 @@
         <activity android:name=".sheetPersonalityActivity" />
         <activity android:name=".SheetFeaturesActivity" />
         <activity android:name=".SheetAbilitiesActivity" />
-<<<<<<< HEAD
-        <activity android:name=".SheetInventoryActivity"></activity>
-=======
->>>>>>> master
-=======
->>>>>>> origin/characterSheet
+        <activity android:name=".SheetInventoryActivity" />
+        <activity android:name=".SheetOtherActivity"/>
     </application>
 
 </manifest>
