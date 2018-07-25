@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setCharacterRolls"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <EditText
+        android:id="@+id/etInputINT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="INT"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputWIS"
+        app:layout_constraintEnd_toEndOf="@+id/etInputDEX"
+        app:layout_constraintStart_toStartOf="@+id/etInputDEX"
+        app:layout_constraintTop_toBottomOf="@+id/etInputDEX" />
+
+    <EditText
+        android:id="@+id/etInputDEX"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="DEX"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputINT"
+        app:layout_constraintEnd_toEndOf="@+id/etInputSTR"
+        app:layout_constraintStart_toStartOf="@+id/etInputSTR"
+        app:layout_constraintTop_toBottomOf="@+id/etInputSTR" />
+
+    <TextView
+        android:id="@+id/tDrag2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center"
+        android:text="Num2"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tDrag3"
+        app:layout_constraintEnd_toStartOf="@+id/tDrag3"
+        app:layout_constraintStart_toEndOf="@+id/tDrag1"
+        app:layout_constraintTop_toTopOf="@+id/tDrag3" />
+
+    <TextView
+        android:id="@+id/tDrag3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Num3"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputSTR"
+        app:layout_constraintEnd_toStartOf="@+id/tDrag4"
+        app:layout_constraintStart_toEndOf="@+id/tDrag2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/tDrag4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="321dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Num4"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputCON"
+        app:layout_constraintEnd_toStartOf="@+id/tDrag5"
+        app:layout_constraintStart_toEndOf="@+id/tDrag3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tDrag5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="369dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Num5"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/bSubmit"
+        app:layout_constraintEnd_toStartOf="@+id/tDrag6"
+        app:layout_constraintStart_toEndOf="@+id/tDrag4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tDrag6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="369dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Num6"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/bSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tDrag5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etInputCHA"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="CHA"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputCON"
+        app:layout_constraintEnd_toEndOf="@+id/etInputCON"
+        app:layout_constraintStart_toStartOf="@+id/etInputCON"
+        app:layout_constraintTop_toBottomOf="@+id/etInputWIS" />
+
+    <EditText
+        android:id="@+id/etInputCON"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginStart="144dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="CON"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bSubmit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tDrag4" />
+
+    <TextView
+        android:id="@+id/tDrag1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginStart="6dp"
+        android:gravity="center"
+        android:text="Num1"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tDrag2"
+        app:layout_constraintEnd_toStartOf="@+id/tDrag2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tDrag2" />
+
+    <Button
+        android:id="@+id/bSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etInputCON"
+        app:layout_constraintTop_toBottomOf="@+id/tDrag5" />
+
+    <EditText
+        android:id="@+id/etInputWIS"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="WIS"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputCHA"
+        app:layout_constraintEnd_toEndOf="@+id/etInputCHA"
+        app:layout_constraintStart_toStartOf="@+id/etInputCHA"
+        app:layout_constraintTop_toBottomOf="@+id/etInputINT" />
+
+    <EditText
+        android:id="@+id/etInputSTR"
+        android:layout_width="97dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="STR"
+        android:maxLength="2"
+        android:inputType="number"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInputDEX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tDrag3" />
+</android.support.constraint.ConstraintLayout>

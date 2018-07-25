@@ -37,12 +37,11 @@ public class SignInActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-
+        // Get Id's
         signInButton = (Button) findViewById(R.id.signInButton);
         etUsername = (EditText) findViewById(R.id.usernameField);
         etPassword = (EditText) findViewById(R.id.passwordField);
         backButton = (FloatingActionButton) findViewById(R.id.signInBackButton);
-
 
 
         // Configure sign in and back buttons
@@ -97,8 +96,11 @@ public class SignInActivity extends AppCompatActivity
                                     else
                                     {
 
-                                        //Intent intent = new Intent(SignInActivity.this, createCharacter.class);
-                                        //startActivity(intent);
+                                        System.out.println("SUCCESS");
+                                        Intent intent = new Intent(SignInActivity.this, createCharacter.class);
+                                        intent.putExtra("userID", userID);
+
+                                        startActivity(intent);
 
                                     }
 

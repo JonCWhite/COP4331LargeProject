@@ -15,7 +15,7 @@ import com.android.volley.RequestQueue;
 =======
 
 import com.android.volley.Request;
->>>>>>> 0f33aa2... Added support for registering new users.
+>>>>>>> signInSignUpUI
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
->>>>>>> 0f33aa2... Added support for registering new users.
+>>>>>>> signInSignUpUI
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     FloatingActionButton backButton;
     String username, email, password;
     static final String url = "http://cop4331-7.xyz/signUp.php";
->>>>>>> 0f33aa2... Added support for registering new users.
+>>>>>>> signInSignUpUI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Configure submit and back buttons
         configureBackButton();
         configureSignUpButton();
->>>>>>> 0f33aa2... Added support for registering new users.
+>>>>>>> signInSignUpUI
     }
 
     // Configure back button to end this activity and return to the main activity.

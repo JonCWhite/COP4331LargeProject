@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="xyz.cop4331_7.taverntable">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        >
+        android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,22 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-        />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".PlayerSessionActivity" />
-        <activity android:name=".DMSessionActivity" />
-        <activity
-            android:name=".CharacterNotes"
-            android:label="@string/title_activity_character_notes"
-            android:parentActivityName=".UserAreaActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
-        </activity>
+        <activity android:name=".createCharacter" />
+        <activity android:name=".setCharacterRolls"></activity>
     </application>
 
 </manifest>
