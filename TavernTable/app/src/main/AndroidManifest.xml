@@ -35,7 +35,9 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".PlayerSessionActivity" />
         <activity android:name=".DMSessionActivity" />
-        <activity android:name=".PlayerorDM"/>
+        <activity android:name=".PlayerorDM" />
+        <activity android:name=".CreateCampaign" />
+        <activity android:name=".JoinCampaign"></activity>
     </application>
 
 </manifest>
