@@ -33,10 +33,10 @@
 
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".PlayerSessionActivity" />
         <activity android:name=".DMSessionActivity" />
         <activity android:name=".SelectSheetActivity" />
-        <activity android:name=".StandIn_RegisterActivity" />
         <activity android:name=".StandIn_SignInActivity" />
         <activity android:name=".StandIn_SelectUserTypeActivity" />
         <activity android:name=".StandIn_CampaignSelectActivity" />
