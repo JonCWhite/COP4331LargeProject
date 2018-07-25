@@ -6,8 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< HEAD
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+=======
 import android.widget.LinearLayout;
 import android.widget.TextView;
+>>>>>>> e9b4ec3... Character sheet fully implemented
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,7 +39,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class SheetPersonalityActivity extends AppCompatActivity {
     Button button;
     EditText etTraits, etIdeals, etBonds, etFlaws;
@@ -33,11 +48,54 @@ public class SheetPersonalityActivity extends AppCompatActivity {
     static final String urlGet = "http://cop4331-7.xyz/getFlavorBox.php";
     static final String urlSet = "http://cop4331-7.xyz/setFlavorBox.php";
 
+    EditText personality, ideals, bonds, flaws;
+
+    Intent intent;
+    int characterID;
+    static final String urlGet = "http://cop4331-7.xyz/getFlavorBox.php";
+    static final String urlSet = "http://cop4331-7.xyz/setFlavorBox.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sheet_personality);
 
+<<<<<<< HEAD
+        personality = (EditText) findViewById(R.id.etTraits);
+        ideals = (EditText) findViewById(R.id.etIdeals);
+        bonds = (EditText) findViewById(R.id.etBonds);
+        flaws = (EditText) findViewById(R.id.etFlaws);
+
+        Button button = (Button) findViewById(R.id.bSheetFeatures);
+
+        //get the character ID
+        intent = getIntent();
+        characterID = intent.getIntExtra("characterID",-1);
+
+        //if there was a character ID, go get its notes
+        if(characterID > -1) {
+            getTraits(characterID);
+
+
+
+        }
+        //when button gets pressed, go save the data
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String personData = personality.getText().toString();
+                String idealsData = ideals.getText().toString();
+                String bondsData = bonds.getText().toString();
+                String flawsData = flaws.getText().toString();
+
+                setTraits(characterID, personData, idealsData, bondsData, flawsData);
+            }
+        });
+
+    }//End OnCreate()
+
+    private void getTraits(final int characterID){
+=======
         // Initialize class variables from UI elements
         etTraits = (EditText) findViewById(R.id.etTraits);
         etIdeals = (EditText) findViewById(R.id.etIdeals);
@@ -56,6 +114,7 @@ public class SheetPersonalityActivity extends AppCompatActivity {
 
     // Loads data from the server into character background fields
     private void getPersonality(final String characterID, final RequestQueue queue){
+>>>>>>> e9b4ec3... Character sheet fully implemented
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, urlGet,
                 new Response.Listener<String>()
@@ -65,6 +124,30 @@ public class SheetPersonalityActivity extends AppCompatActivity {
                     {
                         try
                         {
+<<<<<<< HEAD
+                            JSONArray jsonResponse = new JSONArray(response);
+
+                            String personalityText = jsonResponse.getJSONObject(0).getString("personality"),
+                                    idealsText = jsonResponse.getJSONObject(0).getString("ideals"),
+                                    bondsText = jsonResponse.getJSONObject(0).getString("bonds"),
+                                    flawsText = jsonResponse.getJSONObject(0).getString("flaws"),
+                                    error = jsonResponse.getJSONObject(0).getString("error");
+
+                            if(error.equals("")){
+
+                                //success
+                                personality.setText(personalityText);
+                                ideals.setText(idealsText);
+                                bonds.setText(bondsText);
+                                flaws.setText(flawsText);
+                            }
+
+                            else{
+
+                                //fail
+                            }
+
+=======
                             // Read server response into strings
                             final JSONArray jsonResponse = new JSONArray(response);
                             String personality = jsonResponse.getJSONObject(0).getString("personality"),
@@ -105,6 +188,7 @@ public class SheetPersonalityActivity extends AppCompatActivity {
                                 LinearLayout parent = (LinearLayout) findViewById(R.id.llPersonality);
                                 parent.removeView(button);
                             }
+>>>>>>> e9b4ec3... Character sheet fully implemented
                         }
                         catch (JSONException e)
                         {
@@ -134,6 +218,15 @@ public class SheetPersonalityActivity extends AppCompatActivity {
             }
         };
 
+<<<<<<< HEAD
+        Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+
+    }//end getTraits()
+
+    private void setTraits(final int characterID, final String personData, final String idealsData, final String bondsData, final String flawsData){
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, urlGet,
+=======
         queue.add(postRequest);
 
     }//end getFeatures
@@ -142,6 +235,7 @@ public class SheetPersonalityActivity extends AppCompatActivity {
     private void setPersonality(final String characterID, final RequestQueue queue){
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, urlSet,
+>>>>>>> e9b4ec3... Character sheet fully implemented
                 new Response.Listener<String>()
                 {
                     @Override
@@ -149,12 +243,19 @@ public class SheetPersonalityActivity extends AppCompatActivity {
                     {
                         try
                         {
+<<<<<<< HEAD
+                            JSONObject jsonResponse = new JSONObject(response);
+                            String error = jsonResponse.getString("error");
+
+                            if(error.equals("")){
+=======
                             if (!response.equals("")) {
                                 JSONObject jsonResponse = new JSONObject(response);
                                 String error = jsonResponse.getString("error");
                             }
 
                             /*if(error.equals("")){
+>>>>>>> e9b4ec3... Character sheet fully implemented
 
                                 //success
                             }
@@ -162,7 +263,11 @@ public class SheetPersonalityActivity extends AppCompatActivity {
                             else{
 
                                 //fail
+<<<<<<< HEAD
+                            }
+=======
                             }*/
+>>>>>>> e9b4ec3... Character sheet fully implemented
 
                         }
                         catch (JSONException e)
@@ -185,17 +290,37 @@ public class SheetPersonalityActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String> params = new HashMap<>();
+<<<<<<< HEAD
+
+                // POST params
+                params.put("characterID", String.valueOf(characterID));
+                params.put("personality", personData);
+                params.put("ideals", idealsData);
+                params.put("bonds", bondsData);
+                params.put("flaws", flawsData);
+=======
                 // POST params
                 params.put("characterID", characterID);
                 params.put("personality", etTraits.getText().toString());
                 params.put("ideals", etIdeals.getText().toString());
                 params.put("bonds", etBonds.getText().toString());
                 params.put("flaws", etFlaws.getText().toString());
+>>>>>>> e9b4ec3... Character sheet fully implemented
 
                 return params;
             }
         };
 
+<<<<<<< HEAD
+        Volley.newRequestQueue(getApplicationContext()).add(postRequest);
+
+
+    }//end setTraits()
+
+
+}//end class
+=======
         queue.add(postRequest);
     } // end setPersonality
 }
+>>>>>>> e9b4ec3... Character sheet fully implemented
