@@ -59,6 +59,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
         </activity>
+        <activity
+            android:name=".CampaignNotes"
+            android:parentActivityName=".UserAreaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
+        </activity>
 
     </application>
 

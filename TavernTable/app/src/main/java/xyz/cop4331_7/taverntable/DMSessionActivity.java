@@ -73,8 +73,15 @@ public class DMSessionActivity extends AppCompatActivity {
         bNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start next activity (currently a placeholder, will have to make this a popup)
-                // startActivity(new Intent(PlayerSessionActivity.this, null));
+                //reusing the CharacterNotes activity, but looking at campaign notes
+
+                final Intent intent = new Intent(DMSessionActivity.this, CampaignNotes.class);
+
+                //notes activity accepts integers, need to convert
+                int cID = Integer.parseInt(campaign_name);
+
+                intent.putExtra("campaignID", cID);
+                startActivity(intent);
             }
         });
     }
