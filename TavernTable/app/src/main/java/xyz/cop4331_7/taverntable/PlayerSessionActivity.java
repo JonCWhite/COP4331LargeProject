@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
 
-    private String campaign_name, characterID, user_name, userID;
+    private String campaign_name, user_name, characterID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,6 @@ public class PlayerSessionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user_name = intent.getExtras().getString("userid");
         campaign_name =  intent.getExtras().getString("campaignid");
-
-        // Initialize class variables.
-        campaign_name = getIntent().getExtras().get("campaign_name").toString();
-        characterID = getIntent().getExtras().get("characterID").toString();
-        user_name = getIntent().getExtras().get("user_name").toString();
-        userID = getIntent().getExtras().get("userID").toString();
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
@@ -76,7 +70,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
                 // Start SelectSheetsActivity
                 Intent intent = new Intent(PlayerSessionActivity.this, SelectSheetActivity.class);
                 intent.putExtra("campaignID", campaign_name);
-                intent.putExtra("userID", userID);
+                intent.putExtra("userID", user_name);
                 startActivity(intent);
             }
         });

@@ -113,7 +113,7 @@ public class DMSelectionofCampaign extends AppCompatActivity {
         b1.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent createintent = new Intent(DMSelectionofCampaign.this, PlayerSessionActivity.class);
+                Intent createintent = new Intent(DMSelectionofCampaign.this, DMSessionActivity.class);
                 createintent.putExtra("userid", id );
                 createintent.putExtra("campaignid", campID );
                 startActivity(createintent);
