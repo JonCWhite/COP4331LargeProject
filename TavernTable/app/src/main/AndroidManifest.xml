@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +19,6 @@
                 <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -30,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".RegisterActivity" />
@@ -50,7 +47,7 @@
         <activity android:name=".SheetFeaturesActivity" />
         <activity android:name=".SheetAbilitiesActivity" />
         <activity android:name=".SheetInventoryActivity" />
-        <activity android:name=".SheetOtherActivity"/>
+        <activity android:name=".SheetOtherActivity" />
         <activity
             android:name=".CharacterNotes"
             android:parentActivityName=".UserAreaActivity"
@@ -67,7 +64,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.cop4331_7.taverntable.UserAreaActivity" />
         </activity>
-
+        <activity android:name=".BackupDice"></activity>
     </application>
 
 </manifest>

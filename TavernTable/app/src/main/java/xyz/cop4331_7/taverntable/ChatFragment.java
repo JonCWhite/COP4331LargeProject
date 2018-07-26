@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +143,30 @@ public class ChatFragment extends Fragment {
                 llMessages.addView(usernameView);
                 llMessages.addView(messageView);
             }
+            // System messages are formatted uniquely. They always have centered gravity and are
+            // a darker gray color. These messages are most often used to display dice rolls.
+            else if(username.equals("System")) {
+                // format username
+                usernameView.setText(username);
+                usernameView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                // format message
+                messageView.setText(message);
+                messageView.setGravity(Gravity.CENTER_HORIZONTAL);
+                LinearLayout.LayoutParams textParam =
+                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                textParam.gravity = Gravity.CENTER_HORIZONTAL;
+                messageView.setLayoutParams(textParam);
+                messageView.setBackgroundColor(getResources().getColor(R.color.darkGray));
+                messageView.setTextColor(getResources().getColor(R.color.white));
+                padding = getDPPaddingInPixels(paddingBase);
+                messageView.setPadding(padding, padding, padding, padding);
+
+                // add user name and message to UI
+                llMessages.addView(usernameView);
+                llMessages.addView(messageView);
+            }
             else {
                 // format username
                 usernameView.setText(username);
@@ -156,6 +181,8 @@ public class ChatFragment extends Fragment {
                 textParam.gravity = android.view.Gravity.LEFT;
                 messageView.setLayoutParams(textParam);
                 messageView.setBackgroundColor(getResources().getColor(R.color.lightGray));
+                padding = getDPPaddingInPixels(paddingBase);
+                messageView.setPadding(padding, padding, padding, padding);
 
                 // add user name and message to UI
                 llMessages.addView(usernameView);
