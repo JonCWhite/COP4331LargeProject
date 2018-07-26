@@ -28,8 +28,8 @@ public class DMSessionActivity extends AppCompatActivity {
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name", user_name);
-        bundle.putString("campaign_name", campaign_name);
+        bundle.putString("userid", user_name);
+        bundle.putString("campaignid", campaign_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -71,10 +71,7 @@ public class DMSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
-                Intent intent = new Intent(DMSessionActivity.this, SelectSheetActivity.class);
-                intent.putExtra("campaignID", campaign_name);
-                intent.putExtra("userID", user_name);
-                startActivity(intent);
+                // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
         });
     }
@@ -86,15 +83,8 @@ public class DMSessionActivity extends AppCompatActivity {
         bNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //reusing the CharacterNotes activity, but looking at campaign notes
-
-                final Intent intent = new Intent(DMSessionActivity.this, CampaignNotes.class);
-
-                //notes activity accepts integers, need to convert
-                int cID = Integer.parseInt(campaign_name);
-
-                intent.putExtra("campaignID", cID);
-                startActivity(intent);
+                // Start next activity (currently a placeholder, will have to make this a popup)
+                // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
         });
     }

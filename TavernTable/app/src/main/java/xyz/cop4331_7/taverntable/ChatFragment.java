@@ -43,8 +43,8 @@ public class ChatFragment extends Fragment {
             bSend = (Button) view.findViewById(R.id.bSend);
             etEntry = (EditText) view.findViewById(R.id.etMessageEntry);
             llMessages = (LinearLayout) view.findViewById(R.id.llMessages);
-            user_name = getArguments().getString("user_name");
-            campaign_name = getArguments().getString("campaign_name");
+            user_name = getArguments().getString("userid");
+            campaign_name = getArguments().getString("campaignid");
 
             roomRoot = FirebaseDatabase.getInstance().getReference().child(campaign_name);
 
@@ -64,8 +64,6 @@ public class ChatFragment extends Fragment {
 
                     // Update the database.
                     messageRoot.updateChildren(messageContent);
-
-                    etEntry.setText("");
                 }
             });
 
@@ -106,7 +104,6 @@ public class ChatFragment extends Fragment {
             return view;
     }
 
-    // Populate chat with chat messages.
     private void appendChat(DataSnapshot dataSnapshot) {
         int padding;
         Iterator i = dataSnapshot.getChildren().iterator();
@@ -164,7 +161,6 @@ public class ChatFragment extends Fragment {
         }
     }
 
-    // Converts dp value to actual pixel value.
     private int getDPPaddingInPixels(int paddingDp) {
         float density = getActivity().getApplicationContext().getResources().getDisplayMetrics().density;
         int paddingPixel = (int)(paddingDp * density);
