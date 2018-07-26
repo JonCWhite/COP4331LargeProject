@@ -28,8 +28,8 @@ public class DMSessionActivity extends AppCompatActivity {
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("userid", user_name);
-        bundle.putString("campaignid", campaign_name);
+        bundle.putString("user_name", user_name);
+        bundle.putString("campaign_name", campaign_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
