@@ -3,6 +3,7 @@ package xyz.cop4331_7.taverntable;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,23 +11,24 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
-    private String campaign_name, characterID, user_name, userID;
+
+    private String campaign_name, user_name, characterID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_session);
 
-        // Initialize class variables.
-        campaign_name = getIntent().getExtras().get("campaign_name").toString();
-        characterID = getIntent().getExtras().get("characterID").toString();
-        user_name = getIntent().getExtras().get("user_name").toString();
-        userID = getIntent().getExtras().get("userID").toString();
+        // Initialize user and campaign names.
+        Intent intent = getIntent();
+        user_name = intent.getExtras().getString("userid");
+        campaign_name =  intent.getExtras().getString("campaignid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
         bundle.putString("campaign_name", campaign_name);
         bundle.putString("user_name", user_name);
+
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -48,6 +50,10 @@ public class PlayerSessionActivity extends AppCompatActivity {
         bBattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PlayerSessionActivity.this);
+                builder.setMessage("Please enter Campaign Name"+ user_name + "campaignID: "+ campaign_name)
+                        .setNegativeButton("Try Again", null)
+                        .create().show();
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
@@ -64,7 +70,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
                 // Start SelectSheetsActivity
                 Intent intent = new Intent(PlayerSessionActivity.this, SelectSheetActivity.class);
                 intent.putExtra("campaignID", campaign_name);
-                intent.putExtra("userID", userID);
+                intent.putExtra("userID", user_name);
                 startActivity(intent);
             }
         });

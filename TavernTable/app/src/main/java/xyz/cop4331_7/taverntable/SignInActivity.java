@@ -97,7 +97,9 @@ public class SignInActivity extends AppCompatActivity
                                     else
                                     {
 
-                                        Intent intent = new Intent(SignInActivity.this, StandIn_SelectUserTypeActivity.class);
+                                        //share userID across activities
+                                        Intent intent = new Intent(SignInActivity.this, PlayerorDM.class);
+                                        intent.putExtra("userid", userID );
                                         startActivity(intent);
 
                                     }
