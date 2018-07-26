@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
-
-    private String campaign_name, user_name, characterID;
+    String user_name, campaign_name, characterID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +22,12 @@ public class PlayerSessionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user_name = intent.getExtras().getString("userid");
         campaign_name =  intent.getExtras().getString("campaignid");
+        characterID =  intent.getExtras().getString("characterid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("campaign_name", campaign_name);
-        bundle.putString("user_name", user_name);
-
+        bundle.putString("userid", user_name);
+        bundle.putString("campaignid", campaign_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -51,7 +50,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PlayerSessionActivity.this);
-                builder.setMessage("Please enter Campaign Name"+ user_name + "campaignID: "+ campaign_name)
+                builder.setMessage("Please enter Campaign Name"+ user_name + "campaignID: "+ campaign_name + " characterID: " + characterID)
                         .setNegativeButton("Try Again", null)
                         .create().show();
                 // Start next activity (currently a placeholder, will have to make this a popup)
@@ -67,11 +66,8 @@ public class PlayerSessionActivity extends AppCompatActivity {
         bSheets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start SelectSheetsActivity
-                Intent intent = new Intent(PlayerSessionActivity.this, SelectSheetActivity.class);
-                intent.putExtra("campaignID", campaign_name);
-                intent.putExtra("userID", user_name);
-                startActivity(intent);
+                // Start next activity (currently a placeholder, will have to make this a popup)
+                // startActivity(new Intent(PlayerSessionActivity.this, null));
             }
         });
     }
@@ -80,22 +76,12 @@ public class PlayerSessionActivity extends AppCompatActivity {
         ImageButton bNotes = (ImageButton) findViewById(R.id.bNotes);
         // Add an onClickListener to the button and configure it to start the sign in activity when
         // pressed.
-
         bNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
-
-                final Intent intent = new Intent(PlayerSessionActivity.this, CharacterNotes.class);
-
-                //notes activity accepts integers, need to convert
-                int cID = Integer.parseInt(characterID);
-
-                intent.putExtra("characterID", cID);
-                startActivity(intent);
-
             }
-        }); //end setOnClickListener
+        });
     }
 }

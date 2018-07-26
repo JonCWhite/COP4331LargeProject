@@ -15,10 +15,14 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +46,7 @@ public class setCharacterRolls extends AppCompatActivity
     // URL to send request
     static final String SEND_CHARACTER_URL = "http://cop4331-7.xyz/initializeCharacter.php";
 
-    private String userID; // Holds userID
+    private String userID, campID; // Holds userID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +64,8 @@ public class setCharacterRolls extends AppCompatActivity
         roll5 = intent.getStringExtra("roll5");
         roll6 = intent.getStringExtra("roll6");
 
-        // Get userID from previous intent
-        userID = intent.getStringExtra("userID");
+        userID = intent.getStringExtra("userid");
+        campID = intent.getStringExtra("campaignid");
 
         // Get the character name, class and race of the character.
         charName = intent.getStringExtra("charName");
@@ -232,50 +236,8 @@ public class setCharacterRolls extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                // If all the numbers from the rolls are used, then send the request.
-                if(rollsArray.contains(etSTR.getText().toString()) && rollsArray.contains(etDEX.getText().toString())
-                        && rollsArray.contains(etINT.getText().toString()) && rollsArray.contains(etWIS.getText().toString())
-                        && rollsArray.contains(etCHA.getText().toString()) && rollsArray.contains(etCON.getText().toString()))
-                {
-                    // Get all the inputs and save to their respective Strings
-                    inputSTR = etSTR.getText().toString();
-                    inputDEX = etDEX.getText().toString();
-                    inputINT = etINT.getText().toString();
-                    inputWIS = etWIS.getText().toString();
-                    inputCHA = etCHA.getText().toString();
-                    inputCON = etCON.getText().toString();
-
-                    StringRequest postRequest = new StringRequest(Request.Method.POST, SEND_CHARACTER_URL, null, null) {
-                        @Override
-                        protected Map<String, String> getParams()
-                        {
-                            Map<String, String> params = new HashMap<>();
-
-                            // POST parameters
-                            params.put("Name", charName);
-                            params.put("raceName", raceSelected);
-                            params.put("className", classSelected);
-                            params.put("rollDex", inputSTR);
-                            params.put("rollCha", inputCHA);
-                            params.put("rollStr", inputSTR);
-                            params.put("rollCon", inputSTR);
-                            params.put("rollInt", inputINT);
-                            params.put("rollWis", inputWIS);
-                            params.put("userID", userID);
-
-                            return params;
-                        }
-                    };
-
-                    Volley.newRequestQueue(getApplicationContext()).add(postRequest);
-
-                    Intent intent = new Intent(setCharacterRolls.this, PlayerSessionActivity.class);
-                    setCharacterRolls.this.startActivity(intent);
-
-                }
-
                 // Check for empty input
-                else if ((isFieldEmpty(etSTR) || isFieldEmpty(etDEX) || isFieldEmpty(etINT) ||
+                if ((isFieldEmpty(etSTR) || isFieldEmpty(etDEX) || isFieldEmpty(etINT) ||
                         isFieldEmpty(etWIS) || isFieldEmpty(etCHA) || isFieldEmpty(etCON))== true)
                 {
                     AlertDialog.Builder builder = new AlertDialog.Builder(setCharacterRolls.this);
@@ -286,10 +248,61 @@ public class setCharacterRolls extends AppCompatActivity
                 // Inputs not allowed. They are not from the rolled numbers.
                 else
                 {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(setCharacterRolls.this);
-                    builder.setMessage("Invalid input(s).")
-                            .setNegativeButton("Try Again", null)
-                            .create().show();
+                    // Get all the inputs and save to their respective Strings
+                    inputSTR = etSTR.getText().toString();
+                    inputDEX = etDEX.getText().toString();
+                    inputINT = etINT.getText().toString();
+                    inputWIS = etWIS.getText().toString();
+                    inputCHA = etCHA.getText().toString();
+                    inputCON = etCON.getText().toString();
+
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, SEND_CHARACTER_URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                String charID = jsonResponse.getString("characterID");
+
+                                Intent intent = new Intent(setCharacterRolls.this, PlayerSessionActivity.class);
+                                intent.putExtra("userid", userID);
+                                intent.putExtra("campaignid", campID);
+                                intent.putExtra("characterid", charID);
+                                startActivity(intent);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
+                                }
+                            }) {
+                        @Override
+                        protected Map<String, String> getParams()
+                        {
+                            Map<String, String> params = new HashMap<>();
+
+                            // POST parameters
+                            params.put("Name", charName);
+                            params.put("raceName", raceSelected);
+                            params.put("className", classSelected);
+                            params.put("rollDex", inputDEX);
+                            params.put("rollCha", inputCHA);
+                            params.put("rollStr", inputSTR);
+                            params.put("rollCon", inputCON);
+                            params.put("rollInt", inputINT);
+                            params.put("rollWis", inputWIS);
+                            params.put("userID", userID);
+                            params.put("campaignID", campID);
+
+                            return params;
+                        }
+                    };
+
+                    Volley.newRequestQueue(getApplicationContext()).add(postRequest);
                 }
 
 
