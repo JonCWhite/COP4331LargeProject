@@ -71,7 +71,10 @@ public class DMSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
-                // startActivity(new Intent(PlayerSessionActivity.this, null));
+                Intent intent = new Intent(DMSessionActivity.this, SelectSheetActivity.class);
+                intent.putExtra("campaignID", campaign_name);
+                intent.putExtra("userID", user_name);
+                startActivity(intent);
             }
         });
     }
