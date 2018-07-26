@@ -16,10 +16,10 @@ $connection = new mysqli($hostname, $username, $password, $databaseName);
 if ($connection->connect_error) {
 	returnWithError($connection->connect_error);
 } else {
-	// We take the posted in campaignID
-	$campaignID = intval($_POST['campaignID']);
+	// We take the posted in userID
+	$userID = intval($_POST['userID']);
 	// We return the characterIDs that have matching campaignIDs in the CharactersCampaign table.
-	$queryCharacterID = "SELECT characterID FROM CharactersCampaign WHERE campaignID = '$campaignID'";
+	$queryCharacterID = "SELECT * FROM Characters WHERE userID = '$userID'";
 	// We perform our query.
 	$resultCharacterID = $connection->query($queryCharacterID);
 	// We check whether the query was performed, if not, we return a connection error.
@@ -33,7 +33,7 @@ if ($connection->connect_error) {
 		// We store the current characterID
 		$temp = $rowCharacterID['characterID'];
 		// We return the characterName that have matches characterID in the Characters table.
-		$queryCharacterName = "SELECT name FROM Characters WHERE characterID = $temp";
+		$queryCharacterName = "SELECT name, characterID, userID FROM Characters WHERE characterID = $temp";
 		// We perform our query.
 		$resultCharacterName = $connection->query($queryCharacterName);
 		// If our query wasn't executed it means that we have an invalid characterID and we return an error indicating that and exit from the program.
@@ -44,7 +44,10 @@ if ($connection->connect_error) {
 		// Otherwise, we found a character who matches characterID and store the associated row information.
 		$temp = mysqli_fetch_assoc($resultCharacterName);
 		// We add the character name to our array.
-		$rows[] = $temp['name'];
+		$rows[] = array(
+			'name' => $temp['name'],
+			'characterID' => $temp['characterID']
+		);
 	}
 	// Now that we have used our database we can safely close it.
 	$connection->close();
