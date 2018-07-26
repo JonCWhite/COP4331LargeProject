@@ -37,7 +37,10 @@
         <activity android:name=".DMSessionActivity" />
         <activity android:name=".PlayerorDM" />
         <activity android:name=".CreateCampaign" />
-        <activity android:name=".JoinCampaign"></activity>
+        <activity android:name=".JoinCampaign"/>
+        <activity android:name=".createCharacter"/>
+        <activity android:name=".setCharacterRolls"/>
+		
     </application>
 
 </manifest>
