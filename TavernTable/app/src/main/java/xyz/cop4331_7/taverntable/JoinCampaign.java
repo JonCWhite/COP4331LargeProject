@@ -91,7 +91,7 @@ public class JoinCampaign extends Activity {
                                     else
                                     {
 
-                                        Intent intent = new Intent(JoinCampaign.this, PlayerSessionActivity.class);
+                                        Intent intent = new Intent(JoinCampaign.this, createCharacter.class);
                                         intent.putExtra("userid", user);
                                         intent.putExtra("campaignid", campaignID);
                                         startActivity(intent);

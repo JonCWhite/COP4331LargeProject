@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class DMSessionActivity extends AppCompatActivity {
-    private String user_name, campaign_name;
+    String user_name, campaign_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +23,13 @@ public class DMSessionActivity extends AppCompatActivity {
 
         // Initialize user and campaign names.
         Intent intent = getIntent();
-        user_name = intent.getStringExtra("userid");
-        campaign_name =  intent.getStringExtra("campaignid");
+        user_name = intent.getExtras().getString("userid");
+        campaign_name =  intent.getExtras().getString("campaignid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name", user_name);
-        bundle.putString("campaign_name", campaign_name);
+        bundle.putString("userid", user_name);
+        bundle.putString("campaignid", campaign_name);
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

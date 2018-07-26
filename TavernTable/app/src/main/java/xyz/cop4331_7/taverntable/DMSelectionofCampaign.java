@@ -67,7 +67,7 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                                 updateScroll("Party Size: " + partyS);
                                 String partyK = partyKey.getString(i);
                                 updateScroll("Party Key: " + partyK);
-                                addButton();
+                                addButton(usr, campID);
                             }
 
                         } catch (JSONException e) {
@@ -105,11 +105,20 @@ public class DMSelectionofCampaign extends AppCompatActivity {
         selectDMCamps.addView(tv1);
     }
 
-    private void addButton()
+    private void addButton(final String id, final String campID)
     {
         LinearLayout selectDMCamps = (LinearLayout) findViewById(R.id.selectDMCamps);
         Button b1 = new Button(this);
         b1.setText("Return to Campaign Above");
+        b1.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createintent = new Intent(DMSelectionofCampaign.this, PlayerSessionActivity.class);
+                createintent.putExtra("userid", id );
+                createintent.putExtra("campaignid", campID );
+                startActivity(createintent);
+            }
+        }));
 
         selectDMCamps.addView(b1);
     }

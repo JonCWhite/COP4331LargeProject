@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
-    private String user_name, campaign_name;
+    String user_name, campaign_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,8 @@ public class PlayerSessionActivity extends AppCompatActivity {
 
         // Initialize user and campaign names.
         Intent intent = getIntent();
-        user_name = intent.getStringExtra("userid");
-        campaign_name =  intent.getStringExtra("campaignid");
+        user_name = intent.getExtras().getString("userid");
+        campaign_name =  intent.getExtras().getString("campaignid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();

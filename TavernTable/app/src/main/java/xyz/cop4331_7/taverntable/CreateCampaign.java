@@ -83,11 +83,10 @@ public class CreateCampaign extends AppCompatActivity {
                                     String partyKey = jsonResponse.getString("partyKey"),
                                             campaignID = jsonResponse.getString("campaignID"),
                                             error = jsonResponse.getString("error");
-                                    campID=campaignID;
                                     //send userID and campaignID
                                     Intent intent = new Intent(CreateCampaign.this, DMSessionActivity.class);
                                     intent.putExtra("userid", user);
-                                    intent.putExtra("campaignid", campID);
+                                    intent.putExtra("campaignid", campaignID);
                                     startActivity(intent);
                                 }
 
