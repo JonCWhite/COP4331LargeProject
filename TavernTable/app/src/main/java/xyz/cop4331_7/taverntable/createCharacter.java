@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -95,6 +96,7 @@ public class createCharacter extends AppCompatActivity
         // Set up the dice roll and submit buttons
         configureRollDie();
         configureSubmit(userID, campaignID);
+        configureSubmitManual(userID, campaignID);
 
 
 
@@ -244,7 +246,30 @@ public class createCharacter extends AppCompatActivity
                     final String inputCHA = roll5;
                     final String inputCON = roll6;
 
-                    StringRequest postRequest = new StringRequest(Request.Method.POST, url, null, null) {
+                    StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                String charID = jsonResponse.getString("characterID");
+
+                                Intent intent = new Intent(createCharacter.this, PlayerSessionActivity.class);
+                                intent.putExtra("userid", userID);
+                                intent.putExtra("campaignid", campaignID);
+                                intent.putExtra("characterid", charID);
+                                startActivity(intent);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
+                                }
+                            }) {
                         @Override
                         protected Map<String, String> getParams()
                         {
@@ -261,16 +286,12 @@ public class createCharacter extends AppCompatActivity
                             params.put("rollInt", inputINT);
                             params.put("rollWis", inputWIS);
                             params.put("userID", userID);
+                            params.put("campaignID", campaignID);
 
                             return params;
                         }
                     };
                     Volley.newRequestQueue(getApplicationContext()).add(postRequest);
-
-                    Intent intent = new Intent(createCharacter.this, PlayerSessionActivity.class);
-                    intent.putExtra("userid", userID);
-                    intent.putExtra("campaignid", campaignID);
-                    startActivity(intent);
 
                 }
 
@@ -285,5 +306,66 @@ public class createCharacter extends AppCompatActivity
         tv1.setText(temp);
         selectDMCamps.addView(tv1);
     }
+
+    private void configureSubmitManual(final String userID, final String campaignID)
+    {
+        Button manual = findViewById(R.id.enterManual);
+        manual.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                // If character name is less than 4 characters, try again
+                if (etCharName.getText().toString().trim().length() < 4) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(createCharacter.this);
+                    builder.setMessage("Character name must at least 4 characters.")
+                            .setNegativeButton("Try Again", null)
+                            .create().show();
+                }
+                else
+                {
+                    // Get the character name
+                    charName = etCharName.getText().toString();
+
+
+                    // Get Race and Class selected
+                    raceSelected = raceSpinner.getSelectedItem().toString();
+                    classSelected = classSpinner.getSelectedItem().toString();
+
+                    // Save the rolls onto a String
+                    roll1 = tvRoll1.getText().toString();
+                    roll2 = tvRoll2.getText().toString();
+                    roll3 = tvRoll3.getText().toString();
+                    roll4 = tvRoll4.getText().toString();
+                    roll5 = tvRoll5.getText().toString();
+                    roll6 = tvRoll6.getText().toString();
+
+                    // Create new intent
+                    Intent intent = new Intent(createCharacter.this, setCharacterRolls.class);
+
+                    // Push the rolled numbers onto the next intent
+                    intent.putExtra("roll1", roll1);
+                    intent.putExtra("roll2", roll2);
+                    intent.putExtra("roll3", roll3);
+                    intent.putExtra("roll4", roll4);
+                    intent.putExtra("roll5", roll5);
+                    intent.putExtra("roll6", roll6);
+
+                    intent.putExtra("userid", userID);
+                    intent.putExtra("campaignid", campaignID);
+
+                    // Push characer name, race selected and class selected
+                    intent.putExtra("charName", charName);
+                    intent.putExtra("raceSelected", raceSelected);
+                    intent.putExtra("classSelected", classSelected);
+
+                    // Start the new intent
+                    createCharacter.this.startActivity(intent);
+                }
+
+            }
+        });
+    }
+
 
 }
