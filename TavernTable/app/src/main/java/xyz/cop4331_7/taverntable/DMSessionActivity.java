@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class DMSessionActivity extends AppCompatActivity {
-    String user_name, campaign_name;
+    String user_name, campaign_name, characterID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
