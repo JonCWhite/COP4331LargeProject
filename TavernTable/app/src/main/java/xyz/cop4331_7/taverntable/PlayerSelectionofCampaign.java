@@ -46,6 +46,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                             JSONArray characterNames = jsonResponseObject.getJSONArray("characterNames");
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
+                            JSONArray characterIDs = jsonResponseObject.getJSONArray("characterID");
                             JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
                             JSONArray partySize = jsonResponseObject.getJSONArray("partySizes");
 
@@ -60,8 +61,9 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
                                 String campID = campaignIDs.getString(i);
                                 updateScroll("Campaign ID: " + campID);
                                 String partyS = partySize.getString(i);
+                                String characterID = characterIDs.getString(i);
                                 updateScroll("Party Size: " + partyS);
-                                addButton(user,campID);
+                                addButton(user,campID, characterID);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,7 +102,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
         selectDMCamps.addView(tv1);
     }
 
-    private void addButton(final String id, final String campID)
+    private void addButton(final String id, final String campID, final String characterID)
     {
         LinearLayout selectCamps = (LinearLayout) findViewById(R.id.selectCamps);
         Button b1 = new Button(this);
@@ -111,6 +113,7 @@ public class PlayerSelectionofCampaign extends AppCompatActivity {
             Intent createintent = new Intent(PlayerSelectionofCampaign.this, PlayerSessionActivity.class);
             createintent.putExtra("userid", id );
             createintent.putExtra("campaignid", campID );
+            createintent.putExtra("characterid", characterID );
             startActivity(createintent);
         }
     }));

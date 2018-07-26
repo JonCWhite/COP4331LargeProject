@@ -23,6 +23,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user_name = intent.getExtras().getString("userid");
         campaign_name =  intent.getExtras().getString("campaignid");
+        characterID = intent.getExtras().getString("characterid");
 
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
