@@ -64,6 +64,8 @@ public class ChatFragment extends Fragment {
 
                     // Update the database.
                     messageRoot.updateChildren(messageContent);
+
+                    etEntry.setText("");
                 }
             });
 
