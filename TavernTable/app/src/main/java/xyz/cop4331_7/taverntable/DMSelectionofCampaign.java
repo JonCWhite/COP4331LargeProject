@@ -45,18 +45,14 @@ public class DMSelectionofCampaign extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponseObject = new JSONObject(response);
-                            //go get character names
-                            JSONArray characterNames = jsonResponseObject.getJSONArray("characterNames");
                             JSONArray campaignNames = jsonResponseObject.getJSONArray("campaignNames");
                             JSONArray campaignIDs = jsonResponseObject.getJSONArray("campaignIDs");
                             JSONArray dm = jsonResponseObject.getJSONArray("DMNames");
                             JSONArray partySize = jsonResponseObject.getJSONArray("partySizes");
                             JSONArray partyKey = jsonResponseObject.getJSONArray("partyKeys");
 
-                            for(int i=0; i<characterNames.length(); i++)
+                            for(int i=0; i<campaignNames.length(); i++)
                             {
-                                String charName = characterNames.getString(i);
-                                updateScroll("Character Name: " + charName);
                                 String dmS = dm.getString(i);
                                 updateScroll("DM: " + dmS);
                                 String campName = campaignNames.getString(i);
