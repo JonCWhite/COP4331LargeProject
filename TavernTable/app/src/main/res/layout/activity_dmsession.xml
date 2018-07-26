@@ -29,19 +29,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/bBattle"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_battle"
-            android:background="@null"
-            android:contentDescription="@string/battle_button_desc"/>
-
-        <ImageButton
             android:id="@+id/bSheets"
             android:clickable="true"
             android:focusable="true"

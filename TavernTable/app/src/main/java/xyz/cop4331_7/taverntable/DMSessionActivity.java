@@ -44,6 +44,7 @@ public class DMSessionActivity extends AppCompatActivity {
         configureRollButton();
     }
 
+    /********** battle fuctionality
     private void configureBattleButton() {
         ImageButton bBattle = (ImageButton) findViewById(R.id.bBattle);
         // Add an onClickListener to the button and configure it to start the sign in activity when
@@ -61,6 +62,7 @@ public class DMSessionActivity extends AppCompatActivity {
             }
         });
     }
+     ********************/
 
     private void configureSheetsButton() {
         ImageButton bSheets = (ImageButton) findViewById(R.id.bSheets);

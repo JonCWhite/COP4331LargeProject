@@ -39,11 +39,13 @@ public class PlayerSessionActivity extends AppCompatActivity {
         transaction.commit();
 
         // Assign button listeners to toolbar buttons
-        configureBattleButton();
+
         configureSheetsButton();
         configureNotesButton();
+        configureRollButton();
     }
 
+    /***** Battle fuctionality**********************************
     private void configureBattleButton() {
         ImageButton bBattle = (ImageButton) findViewById(R.id.bBattle);
         // Add an onClickListener to the button and configure it to start the sign in activity when
@@ -60,6 +62,7 @@ public class PlayerSessionActivity extends AppCompatActivity {
             }
         });
     }
+     ***/
 
     private void configureSheetsButton() {
         ImageButton bSheets = (ImageButton) findViewById(R.id.bSheets);
@@ -98,5 +101,24 @@ public class PlayerSessionActivity extends AppCompatActivity {
 
             }
         }); //end setOnClickListener
+    }
+
+    private void configureRollButton() {
+
+        ImageButton bRoll = (ImageButton) findViewById(R.id.bRoll);
+        // Add an onClickListener to the button and configure it to start the sign in activity when
+        // pressed.
+        bRoll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start next activity (currently a placeholder, will have to make this a popup)
+                final Intent intent = new Intent(PlayerSessionActivity.this, BackupDice.class);
+                intent.putExtra("user_name",user_name);
+                intent.putExtra("campaign_name",campaign_name);
+
+
+                startActivity(intent);
+            }
+        });
     }
 }

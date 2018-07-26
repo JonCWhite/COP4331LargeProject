@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
         configureNewUserButton();
 
         // Configure test buttons. These will be removed before the app is published.
-        configurePlayerSessionButton();
-        configureDmSessionButton();
+        //configurePlayerSessionButton();
+        //configureDmSessionButton();
     }
 
     // Button functionality for the returning user button. Allows users to sign in.
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    /********
     // Test button for player session. This will be removed before the app is published.
     private void configurePlayerSessionButton() {
         Button playerSessionButton = (Button) findViewById(R.id.playerSessionButton);
@@ -84,4 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+     *******/
+
 }
