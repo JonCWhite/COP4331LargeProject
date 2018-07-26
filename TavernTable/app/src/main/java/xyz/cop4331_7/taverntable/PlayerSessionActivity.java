@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class PlayerSessionActivity extends AppCompatActivity {
-    String user_name, campaign_name;
+
+    private String campaign_name, characterID, user_name, userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +24,17 @@ public class PlayerSessionActivity extends AppCompatActivity {
         user_name = intent.getExtras().getString("userid");
         campaign_name =  intent.getExtras().getString("campaignid");
 
+        // Initialize class variables.
+        campaign_name = getIntent().getExtras().get("campaign_name").toString();
+        characterID = getIntent().getExtras().get("characterID").toString();
+        user_name = getIntent().getExtras().get("user_name").toString();
+        userID = getIntent().getExtras().get("userID").toString();
+
         // Set FrameLayout to use chat fragment.
         Bundle bundle = new Bundle();
-        bundle.putString("userid", user_name);
-        bundle.putString("campaignid", campaign_name);
+        bundle.putString("campaign_name", campaign_name);
+        bundle.putString("user_name", user_name);
+
         ChatFragment fragObj = new ChatFragment();
         fragObj.setArguments(bundle);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -65,8 +73,11 @@ public class PlayerSessionActivity extends AppCompatActivity {
         bSheets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Start next activity (currently a placeholder, will have to make this a popup)
-                // startActivity(new Intent(PlayerSessionActivity.this, null));
+                // Start SelectSheetsActivity
+                Intent intent = new Intent(PlayerSessionActivity.this, SelectSheetActivity.class);
+                intent.putExtra("campaignID", campaign_name);
+                intent.putExtra("userID", userID);
+                startActivity(intent);
             }
         });
     }
@@ -75,12 +86,22 @@ public class PlayerSessionActivity extends AppCompatActivity {
         ImageButton bNotes = (ImageButton) findViewById(R.id.bNotes);
         // Add an onClickListener to the button and configure it to start the sign in activity when
         // pressed.
+
         bNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
                 // startActivity(new Intent(PlayerSessionActivity.this, null));
+
+                final Intent intent = new Intent(PlayerSessionActivity.this, CharacterNotes.class);
+
+                //notes activity accepts integers, need to convert
+                int cID = Integer.parseInt(characterID);
+
+                intent.putExtra("characterID", cID);
+                startActivity(intent);
+
             }
-        });
+        }); //end setOnClickListener
     }
 }

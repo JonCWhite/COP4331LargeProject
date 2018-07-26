@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Top level linear layout. Used to change background color -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#404040"
+    android:orientation="vertical"
+    tools:context=".SheetCharacterBackgroundActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Character name field. -->
+        <EditText
+            android:id="@+id/etCharacterName"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/placeholder_text"
+            android:textColorHint="#AAAAAA"
+            android:inputType="text"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:gravity="center"/>
+
+        <!-- Light gray box to hold character data inputs.  -->
+        <LinearLayout
+            android:id="@+id/llBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:background="#AAAAAA">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
+                <!-- Character class field. -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/class_text"
+                        android:textColor="#FFFFFF"
+                        android:background="#555555"/>
+
+                    <EditText
+                        android:id="@+id/etClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/placeholder_text"
+                        android:inputType="text"
+                        android:background="#FFFFFF"/>
+                </LinearLayout>
+
+                <!-- Character level field -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/level_text"
+                        android:textColor="#FFFFFF"
+                        android:background="#555555"/>
+
+                    <EditText
+                        android:id="@+id/etLevel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/placeholder_text"
+                        android:inputType="text"
+                        android:background="#FFFFFF"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Character race field. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/race_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etRace"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Character background field. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/background_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Character alignment field. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alignment_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etAlignment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Player Name field. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/player_name_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <TextView
+                    android:id="@+id/tvPlayerName"
+                    android:textColor="?attr/editTextColor"
+                    android:textSize="18sp"
+                    android:text="@string/player_name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Experience points field. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/experience_points_text"
+                    android:textColor="#FFFFFF"
+                    android:background="#555555"/>
+
+                <EditText
+                    android:id="@+id/etEXP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/placeholder_text"
+                    android:inputType="text"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Submit button to send changes to the server -->
+            <Button
+                android:id="@+id/bSheetBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/submit_text"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

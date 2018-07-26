@@ -64,6 +64,8 @@ public class ChatFragment extends Fragment {
 
                     // Update the database.
                     messageRoot.updateChildren(messageContent);
+
+                    etEntry.setText("");
                 }
             });
 
@@ -104,6 +106,7 @@ public class ChatFragment extends Fragment {
             return view;
     }
 
+    // Populate chat with chat messages.
     private void appendChat(DataSnapshot dataSnapshot) {
         int padding;
         Iterator i = dataSnapshot.getChildren().iterator();
@@ -161,6 +164,7 @@ public class ChatFragment extends Fragment {
         }
     }
 
+    // Converts dp value to actual pixel value.
     private int getDPPaddingInPixels(int paddingDp) {
         float density = getActivity().getApplicationContext().getResources().getDisplayMetrics().density;
         int paddingPixel = (int)(paddingDp * density);

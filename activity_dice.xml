@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/D4"
+        style="@android:style/Widget.Button"
+        android:layout_width="93dp"
+        android:layout_height="68dp"
+        android:text="D4"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <Button
+        android:id="@+id/D6"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="D6"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <Button
+        android:id="@+id/D8"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:text="D8"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <Button
+        android:id="@+id/D10"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="77dp"
+        android:text="D10"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="141dp" />
+
+    <Button
+        android:id="@+id/D20"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:text="D20"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="141dp" />
+
+    <Button
+        android:id="@+id/D100"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        android:text="D100"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="141dp" />
+</android.support.constraint.ConstraintLayout>

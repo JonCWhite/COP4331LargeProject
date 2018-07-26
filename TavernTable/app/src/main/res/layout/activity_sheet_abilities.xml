@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#005c94"
+    tools:context=".SheetAbilitiesActivity">
+
+    <!-- Gray box to hold EditText fields.s -->
+    <LinearLayout
+        android:id="@+id/llAbilities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#AAAAAA"
+        android:orientation="vertical">
+        <!-- Character abilities field. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#555555"
+                android:text="@string/abilities_text"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/etAbilities"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:hint="@string/placeholder_text"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Character weapons field. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#555555"
+                android:text="@string/weapons_text"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/etWeapons"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:hint="@string/placeholder_text"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <!-- Spell casting ability -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#555555"
+                    android:gravity="center"
+                    android:text="@string/spell_casting_ability_text"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tvSpellCastAbility"
+                    android:textColor="?attr/editTextColor"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:text="@string/placeholder_text" />
+
+            </LinearLayout>
+
+            <!-- Spell save DC -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#555555"
+                    android:gravity="center"
+                    android:text="@string/spell_save_dc_text"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tvSpellSaveDC"
+                    android:textColor="?attr/editTextColor"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:text="@string/placeholder_text" />
+
+            </LinearLayout>
+
+            <!-- Spell attack bonus -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#555555"
+                    android:gravity="center"
+                    android:text="@string/spell_attack_bonus_text"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tvSpellBonus"
+                    android:textColor="?attr/editTextColor"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:text="@string/placeholder_text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Character spells field. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#555555"
+                android:text="@string/spells_text"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/etSpells"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:hint="@string/placeholder_text"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <!-- Submit button to send changes to the server -->
+        <Button
+            android:id="@+id/bSheetAbilities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/submit_text" />
+
+    </LinearLayout>
+
+</ScrollView>

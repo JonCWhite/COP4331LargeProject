@@ -96,10 +96,12 @@ public class SignInActivity extends AppCompatActivity
 
                                     else
                                     {
+
                                         //share userID across activities
                                         Intent intent = new Intent(SignInActivity.this, PlayerorDM.class);
                                         intent.putExtra("userid", userID );
                                         startActivity(intent);
+
                                     }
 
                                 }

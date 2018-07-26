@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StandIn_SetCharacterRolls">
+
+    <EditText
+        android:id="@+id/tvINT"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="INT"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="215dp" />
+
+    <EditText
+        android:id="@+id/tvDEX"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="DEX"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <TextView
+        android:id="@+id/tDrag2"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num2"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag3"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num3"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag4"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num4"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag5"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num5"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="265dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/tDrag6"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num6"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="329dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/tvCHA"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="CHA"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="337dp" />
+
+    <EditText
+        android:id="@+id/tvCON"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="CON"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="398dp" />
+
+    <TextView
+        android:id="@+id/tDrag1"
+        android:layout_width="46dp"
+        android:layout_height="61dp"
+        android:gravity="center"
+        android:text="Num1"
+        android:textSize="17dp"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/bSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="272dp"
+        tools:layout_editor_absoluteY="446dp" />
+
+    <EditText
+        android:id="@+id/tvWIS"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="WIS"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <EditText
+        android:id="@+id/tvSTR"
+        android:layout_width="97dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="STR"
+        android:inputType="number"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+</android.support.constraint.ConstraintLayout>

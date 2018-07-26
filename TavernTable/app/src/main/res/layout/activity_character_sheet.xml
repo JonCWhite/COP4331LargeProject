@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foreground="?android:attr/selectableItemBackground"
+    tools:context=".CharacterSheetActivity">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bCharacterBackground"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#404040"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/placeholder_text"
+        android:textColor="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibStats"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_d20"
+        android:background="#009100"
+        android:contentDescription="@string/stats_button_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bCharacterBackground"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <ImageButton
+        android:id="@+id/ibOther"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_sheetother"
+        android:background="#0084c8"
+        android:contentDescription="@string/other_button_text"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibStats"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <ImageButton
+        android:id="@+id/ibHealth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_sheethealth"
+        android:background="#b50000"
+        android:contentDescription="@string/health_button_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toStartOf="@+id/ibPersonality"
+        app:layout_constraintStart_toEndOf="@+id/ibStats"
+        app:layout_constraintTop_toBottomOf="@+id/bCharacterBackground"
+        app:layout_constraintBottom_toTopOf="@id/ibAbilities"/>
+
+    <ImageButton
+        android:id="@+id/ibAbilities"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#005c94"
+        android:clickable="true"
+        android:contentDescription="@string/magic_button_text"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_sheetabilities"
+        app:layout_constraintBottom_toTopOf="@+id/ibInventory"
+        app:layout_constraintEnd_toStartOf="@+id/ibPersonality"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toEndOf="@+id/ibStats"
+        app:layout_constraintTop_toBottomOf="@+id/ibHealth" />
+
+    <ImageButton
+        android:id="@+id/ibInventory"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_sheetequipment"
+        android:background="#ff9900"
+        android:contentDescription="@string/inventory_button_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ibFeatsTraits"
+        app:layout_constraintTop_toBottomOf="@id/ibAbilities"
+        app:layout_constraintStart_toEndOf="@+id/ibOther" />
+
+    <ImageButton
+        android:id="@+id/ibFeatsTraits"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_sheetfeaturestraits"
+        android:background="#0e232e"
+        android:contentDescription="@string/feats_traits_button_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintHeight_percent="0.55"
+        app:layout_constraintWidth_percent="0.3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibPersonality"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#364e59"
+        android:contentDescription="@string/personality_button_text"
+        android:src="@drawable/ic_sheetpersonality"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@+id/ibFeatsTraits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bCharacterBackground"
+        app:layout_constraintWidth_percent="0.3" />
+
+</android.support.constraint.ConstraintLayout>
