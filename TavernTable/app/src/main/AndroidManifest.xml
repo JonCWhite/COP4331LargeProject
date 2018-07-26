@@ -44,7 +44,7 @@
         <activity android:name=".JoinCampaign"/>
         <activity android:name=".createCharacter"/>
         <activity android:name=".setCharacterRolls"/>
-
+        <activity android:name=".BackupDice"/>
         <activity android:name=".SelectSheetActivity" />
         <activity android:name=".StandIn_SelectUserTypeActivity" />
         <activity android:name=".StandIn_CampaignSelectActivity" />

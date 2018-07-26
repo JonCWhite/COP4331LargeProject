@@ -39,7 +39,6 @@ public class DMSessionActivity extends AppCompatActivity {
         transaction.commit();
 
         // Assign button listeners to toolbar buttons
-        configureBattleButton();
         configureSheetsButton();
         configureNotesButton();
         configureRollButton();
@@ -107,7 +106,12 @@ public class DMSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Start next activity (currently a placeholder, will have to make this a popup)
-                // startActivity(new Intent(PlayerSessionActivity.this, null));
+                final Intent intent = new Intent(DMSessionActivity.this, BackupDice.class);
+                intent.putExtra("user_name",user_name);
+                intent.putExtra("campaign_name",campaign_name);
+
+
+                startActivity(intent);
             }
         });
     }
